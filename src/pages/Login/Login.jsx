@@ -26,13 +26,13 @@ const Login = () => {
       <form onSubmit={frmLogin.handleSubmit} className='w-50 mx-auto '>
         <h3>Login</h3>
         <div className="form-group">
-        <label htmlFor='email'>Email</label>
-        <input className='form-control' name='email' id='email' onChange={frmLogin.handleChange} onBlur={frmLogin.handleBlur} />
+        <label htmlFor='email'>Email: </label>
+        <input className='form-control mt-2' name='email' id='email' onChange={frmLogin.handleChange} onBlur={frmLogin.handleBlur} />
         {frmLogin.errors.email && <p className='text text-danger'>{frmLogin.errors.email}</p>}
         </div>
         <div className="form-group">
-        <label htmlFor='password'>password</label>
-        <input className='form-control' type='password' name='password' id='password' onChange={frmLogin.handleChange} onBlur={frmLogin.handleBlur} />
+        <label htmlFor='password mt-2'>Password:</label>
+        <input className='form-control mt-2' type='password' name='password' id='password' onChange={frmLogin.handleChange} onBlur={frmLogin.handleBlur} />
         {frmLogin.errors.password && <p className='text text-danger'>{frmLogin.errors.password}</p>}
         </div>
         <div className="form-group">

@@ -1,10 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios';
 import { httpClient } from '../../util/util';
+import _ from 'lodash'
+
 
 const initialState = {
     arrProduct: [],
     productDetail: null,
+    
 }
 const productReducer = createSlice({
   name: 'productReducer',
@@ -48,4 +51,3 @@ export const getDetailProductActionApi = (id) => {
         dispatch(action);
     }
 }
-

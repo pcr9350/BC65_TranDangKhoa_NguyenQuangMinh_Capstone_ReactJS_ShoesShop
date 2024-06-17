@@ -6,12 +6,13 @@ import { routeLink } from '../App'
 
 const HeaderHome = () => {
   const {userLogin} = useSelector((state) => state.userReducer)
-
+  const {ProductCart} = useSelector((state) => state.cartReducer)
+  let totalquantity = ProductCart.reduce((total, item) => total + item.quantity, 0);
     const renderLogin = () => {
       if (userLogin) {
         return (
           <>
-            <p className="text-white pt-2">Hello </p>
+            <p className="text-white pt-2">Hello: </p>
             <NavLink
               className="text-white pt-2 m-2 my-sm-0"
               to="/profile"
@@ -73,6 +74,7 @@ const HeaderHome = () => {
             </li> */}
         </ul>
         <form className="d-flex my-2 my-lg-0">
+        <NavLink className='text-white mx-2 fs-4 text-decoration-none' to='/cart'>({totalquantity})<i className="fa fa-shopping-cart"></i></NavLink>
             {/* <input className="form-control me-sm-2" type="text" placeholder="Search" />
             <button className="btn btn-outline-success my-2 my-sm-0" type="submit">
                 Search
