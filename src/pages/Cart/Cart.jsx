@@ -1,123 +1,311 @@
-import React from 'react'
-import { useQuery } from '@tanstack/react-query'
-import { Space, Table } from 'antd';
-import { NavLink } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-// import { changeInputQuantityItemCartActionAsync, changeQuantityItemCartActionAsync, deleteItemCartActionAsync} from '../../redux/reducers/cartReducer';
-import _ from 'lodash';
+// import React, { useMemo, useState } from "react";
+// import { useDispatch, useSelector } from "react-redux";
+// import UpDownActions from "../../components/UpDownActions";
+// import {
+//   cartDown,
+//   cartUp,
+//   removeProductToCard,
+// } from "../../redux/reducers/cartReducer";
 
+// const Cart = () => {
+//   const { products } = useSelector((state) => state.cartReducer);
+//   const dispatch = useDispatch();
 
+//   const [productSelected, setProductSelected] = useState([]);
 
+ 
+
+//   const handleRemoveProductInCart = (id) => {
+//     //  alert confirm
+//     if (confirm("Are you sure you want to remove this product?"))
+//       dispatch(removeProductToCard(id));
+//   };
+
+//   const handleUpDownBtn = (type, product) => {
+//     if (type === "up") {
+//       if (product.count === 10) return; // add maximum 10
+//       dispatch(cartUp(product.id));
+//     } else {
+//       if (product.count === 1) return handleRemoveProductInCart(product.id);
+//       dispatch(cartDown(product.id));
+//     }
+//   };
+
+//   const handleCheck = (product) => {
+//     if (
+//       productSelected.find((currentProduct) => product.id === currentProduct.id)
+//     )
+//       setProductSelected(
+//         productSelected.filter(
+//           (currentProduct) => currentProduct.id !== product.id
+//         )
+//       );
+//     else setProductSelected([...productSelected, product]);
+//   };
+
+//   const handleOrder = () => {
+//     console.log(123);
+//   };
+
+//   const totalPrice = useMemo(() => {
+//     if (!productSelected || productSelected.length === 0) {
+//       return 0; 
+//     }
+    
+//     const p1 =  products.reduce((acc, p) => acc + (p?.price || 0) * (p?.count || 0), 0);
+//     const p2 =  productSelected.reduce((acc, p) => acc + (p?.price || 0) * (p?.count || 0), 0);
+
+//     return p2
+
+//   }, [productSelected, products]);
+
+//   console.log(totalPrice)
+//   return (
+//     <div>
+//       <h1>Cart</h1>
+//       <hr />
+//       <div className="position-relative container">
+//         <table className="table mx-5">
+//           <thead className="thead-dark">
+//             <tr>
+//               <th scope="col">
+//                 <input
+//                   type="checkbox"
+//                   checked={productSelected.length > 0}
+//                   onChange={() =>
+//                     setProductSelected(!productSelected.length ? products : [])
+//                   }
+//                 />
+//               </th>
+//               <th scope="col">id</th>
+//               <th scope="col">image</th>
+//               <th scope="col">name</th>
+//               <th scope="col">price</th>
+//               <th scope="col">quantity</th>
+//               <th scope="col">total</th>
+//               <th scope="col">action</th>
+//             </tr>
+//           </thead>
+//           <tbody>
+//             {products?.map((product) => (
+//               <tr key={product?.id}>
+//                 <th>
+//                   <input
+//                     type="checkbox"
+//                     onChange={() => handleCheck(product)}
+//                     checked={productSelected.find(
+//                       (currentProduct) => currentProduct.id === product.id
+//                     )}
+//                   />
+//                 </th>
+//                 <th>{product?.id}</th>
+//                 <th>
+//                   <img src={product?.image} width={50} />
+//                 </th>
+//                 <th>{product?.name}</th>
+//                 <th>{product?.price}</th>
+//                 <th>
+//                   <UpDownActions
+//                     key={product.id}
+//                     product={product}
+//                     handleUpDownBtn={(type) => handleUpDownBtn(type, product)}
+//                   />
+//                 </th>
+//                 <th>{product?.price *product?.count}</th>
+//                 <th className="">
+//                   {/* <button
+//                     className={`btn  ${
+//                       !productSelected.find(
+//                         (currentProduct) => currentProduct.id === product.id
+//                       ) && "disabled"
+//                     }`}
+//                     style={{
+//                       marginRight: 5,
+//                       background: "purple",
+//                       color: "white",
+//                     }}
+//                   >
+//                     Edit
+//                   </button> */}
+//                   <button
+//                     className={`btn btn-danger `}
+//                     onClick={() => handleRemoveProductInCart(product.id)}
+//                   >
+//                     Delete
+//                   </button>
+//                 </th>
+//               </tr>
+//             ))}
+//           </tbody>
+//         </table>
+
+//         <div>Total price: {totalPrice}</div>
+
+//         <button
+//           className={`btn right-0 border-0 p-2 rounded-2 ${
+//             !productSelected?.length > 0 && "disabled"
+//           }`}
+//           style={{
+//             color: "white",
+//             background: "orange",
+//             position: "absolute",
+//             right: "10%",
+//           }}
+//           onClick={handleOrder}
+//         >
+//           Submit order
+//         </button>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Cart;
+
+import React, { useMemo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import UpDownActions from "../../components/UpDownActions";
+import {
+  cartDown,
+  cartUp,
+  removeProductToCard,
+} from "../../redux/reducers/cartReducer";
 
 const Cart = () => {
-  // const {ProductCart} = useSelector((state) => state.cartReducer);
-  //   const dispatch = useDispatch();
-  //   let data = ProductCart;
-  //   data = _.orderBy(data,['id']);
-    
-  return (
-    <div></div>
-    // <div className="container">
-    //   <h3>Cart</h3>
-    //   <table className="table">
-    //     <thead>
-    //       <tr>
-    //         <th>ID</th>
-    //         <th>Img</th>
-    //         <th>Name</th>
-    //         <th>Price</th>
-    //         <th>Quantity</th>
-    //         <th>Total</th>
-    //         <th>Action</th>
-    //       </tr>
-    //     </thead>
-    //     <tbody>
-    //       {data.map((item, index) => {
-    //         return (
-    //           <tr key={index}>
-    //             <td>{item.id}</td>
-    //             <td>
-    //               <img
-    //                 src={item.image}
-    //                 alt={item.name}
-    //                 width={50}
-    //                 height={50}
-    //               />
-    //             </td>
-    //             <td>{item.name}</td>
-    //             <td>{item.price}</td>
-    //             <td>
-    //               <button
-    //                 className="btn btn-success mx-2"
-    //                 onClick={() => {
-    //                   if (item.quantity < 100) {
-    //                     const changeQuantityCartAction =
-    //                       changeQuantityItemCartActionAsync(item.id, 1);
-    //                     dispatch(changeQuantityCartAction);
-    //                   }
-    //                 }}
-    //               >
-    //                 +
-    //               </button>
-    //               <input
-    //                 min={1}
-    //                 type="text"
-    //                 className="form-control d-inline"
-    //                 style={{ width: 100 }}
-    //                 value={item.quantity}
-    //                 onChange={(e) => {
-    //                   let {value} = e.target;
-    //                   const regexNumber = /^[1-9][0-9]?$/;
-    //                   if (regexNumber.test(value)) {
-    //                     const changeInputQuantityCartAction =
-    //                       changeInputQuantityItemCartActionAsync(
-    //                         item.id,
-    //                         Number(value)
-    //                       );
-    //                     dispatch(changeInputQuantityCartAction);
-    //                   } else {
-    //                     alert("Nhập từ 1 tới 99");
-    //                   }
-    //                 }}
-    //               />
-    //               <button
-    //                 className="btn btn-success mx-2"
-    //                 onClick={() => {
-    //                   if (item.quantity > 1) {
-    //                     const changeQuantityCartAction =
-    //                       changeQuantityItemCartActionAsync(item.id, -1);
-    //                     dispatch(changeQuantityCartAction);
-    //                   }
-    //                 }}
-    //               >
-    //                 -
-    //               </button>
-    //             </td>
-    //             <td>{item.quantity * item.price}</td>
-    //             <td>
-    //               <button
-    //                 className="btn btn-danger"
-    //                 onClick={() => {
-    //                   const deleteItemCartAction = deleteItemCartActionAsync(
-    //                     item.id
-    //                   );
-    //                   dispatch(deleteItemCartAction);
-    //                 }}
-    //               >
-    //                 <i className="fa fa-trash"></i>
-    //               </button>
-    //             </td>
-    //           </tr>
-    //         );
-    //       })}
-    //     </tbody>
-    //   </table>
-    //   <div style={{display:'flex', justifyContent: 'flex-end'}}>
-    //     <button className="btn btn-warning" style={{marginLeft: 0}}>Submit Order</button>
-    //   </div>
-      
-    // </div>
-  );
-}
+  const { products } = useSelector((state) => state.cartReducer);
+  const dispatch = useDispatch();
+  const [productSelected, setProductSelected] = useState([]);
 
-export default Cart
+  // Xử lý việc xóa sản phẩm khỏi giỏ hàng với xác nhận
+  const handleRemoveProductInCart = (id) => {
+    if (confirm("Bạn có chắc chắn muốn xóa sản phẩm này không?"))
+      dispatch(removeProductToCard(id));
+  };
+
+  // Xử lý tăng giảm số lượng sản phẩm
+  const handleUpDownBtn = (type, product) => {
+    if (type === "up") {
+      if (product.count < 10) dispatch(cartUp(product.id)); // Tối đa 10
+    } else {
+      if (product.count > 1) dispatch(cartDown(product.id));
+      else handleRemoveProductInCart(product.id);
+    }
+  };
+
+  // Xử lý chọn sản phẩm để đặt hàng
+  const handleCheck = (product) => {
+    setProductSelected((prevSelected) =>
+      prevSelected.find((currentProduct) => product.id === currentProduct.id)
+        ? prevSelected.filter(
+            (currentProduct) => currentProduct.id !== product.id
+          )
+        : [...prevSelected, product]
+    );
+  };
+
+  // Xử lý việc gửi đơn hàng
+  const handleOrder = () => {
+    console.log("Đơn hàng đã được gửi");
+  };
+
+  // Tính toán tổng giá của các sản phẩm được chọn
+  const totalPrice = useMemo(() => {
+    return productSelected.reduce(
+      (acc, p) => acc + (p.price || 0) * (p.count || 0),
+      0
+    );
+  }, [productSelected]);
+
+  // Xử lý việc chọn/bỏ chọn tất cả sản phẩm
+  const handleSelectAll = () => {
+    setProductSelected((prevSelected) =>
+      prevSelected.length === products.length ? [] : products
+    );
+  };
+
+  return (
+    <div>
+      <h1>Giỏ hàng</h1>
+      <hr />
+      <div className="position-relative container">
+        <table className="table mx-5">
+          <thead className="thead-dark">
+            <tr>
+              <th scope="col">
+                <input
+                  type="checkbox"
+                  checked={productSelected.length === products.length}
+                  onChange={handleSelectAll}
+                />
+              </th>
+              <th scope="col">ID</th>
+              <th scope="col">Hình ảnh</th>
+              <th scope="col">Tên sản phẩm</th>
+              <th scope="col">Giá</th>
+              <th scope="col">Số lượng</th>
+              <th scope="col">Tổng</th>
+              <th scope="col">Hành động</th>
+            </tr>
+          </thead>
+          <tbody>
+            {products.map((product) => (
+              <tr key={product.id}>
+                <th>
+                  <input
+                    type="checkbox"
+                    onChange={() => handleCheck(product)}
+                    checked={productSelected.some(
+                      (currentProduct) => currentProduct.id === product.id
+                    )}
+                  />
+                </th>
+                <th>{product.id}</th>
+                <th>
+                  <img src={product.image} width={50} alt={product.name} />
+                </th>
+                <th>{product.name}</th>
+                <th>{product.price}</th>
+                <th>
+                  <UpDownActions
+                    key={product.id}
+                    product={product}
+                    handleUpDownBtn={(type) => handleUpDownBtn(type, product)}
+                  />
+                </th>
+                <th>{product.price * product.count}</th>
+                <th>
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => handleRemoveProductInCart(product.id)}
+                  >
+                    Xóa
+                  </button>
+                </th>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        <div>Tổng giá: {totalPrice}</div>
+
+        <button
+          className={`btn border-0 p-2 rounded-2 ${
+            productSelected.length === 0 && "disabled"
+          }`}
+          style={{
+            color: "white",
+            background: "orange",
+            position: "absolute",
+            right: "10%",
+          }}
+          onClick={handleOrder}
+          disabled={productSelected.length === 0}
+        >
+          Đặt hàng
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default Cart;

@@ -82,18 +82,18 @@
 //         dispatch(action);
 //     }
 // }
-import { createSlice } from '@reduxjs/toolkit'
+// import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = {
+// const initialState = {
 
-}
+// }
 
-const cartReducer = createSlice({
-  name: 'cartReducer',
-  initialState,
-  reducers: {}
-});
+// const cartReducer = createSlice({
+//   name: 'cartReducer',
+//   initialState,
+//   reducers: {}
+// });
 
-export const {} = cartReducer.actions
+// export const {} = cartReducer.actions
 
-export default cartReducer.reducer
+// export default cartReducer.reducer
