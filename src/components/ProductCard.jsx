@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import ButtonBuyProduct from "./ButtonBuyProduct";
 const ProductCard = (props) => {
   let { product } = props;
   return (
@@ -11,6 +12,7 @@ const ProductCard = (props) => {
         <NavLink to={`/detail/${product.id}`} className={"btn btn-dark"}>
           View Detail
         </NavLink>
+        <ButtonBuyProduct product={product} />
       </div>
     </div>
   );
