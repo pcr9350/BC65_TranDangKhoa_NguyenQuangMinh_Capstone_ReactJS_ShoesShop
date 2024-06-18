@@ -6,6 +6,12 @@ import useDataHome from "./useDataHome";
 
 const Home = () => {
   const { data } = useDataHome();
+  // let item1
+  // if(data.length > 0) {
+  //   item1 = data[0];
+  //   console.log(item1.image)
+  // }
+  
   return (
     <div className="container">
       <h3>Product list</h3>

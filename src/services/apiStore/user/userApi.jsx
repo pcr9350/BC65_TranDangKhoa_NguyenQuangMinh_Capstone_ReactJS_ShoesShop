@@ -19,11 +19,18 @@ export class UserApi {
       return res.data.content; // Assuming response data has a 'content' property
     }
   
-    // async updateStore(storeUpdateForm: Store): Promise<Store> { // Consistent return type for clarity
-    //   const res = await httpClient.put(`/api/Store?id=${storeUpdateForm.id}`, storeUpdateForm);
-    //   alert('Sửa Store thành công'); // Consider removing alerts in favor of proper UI updates
-    //   return res.data.content; // Assuming response data has a 'content' property with Store
-    // }
+    async updateUser(userUpdateForm) { // Consistent return type for clarity
+      const res = await httpClient.post('/api/Users/updateProfile', userUpdateForm);
+      alert('Sửa User thành công'); // Consider removing alerts in favor of proper UI updates
+      return res.data.content; // Assuming response data has a 'content' property with Store
+    }
+
+    async updatePasswordUser(password) { // Consistent return type for clarity
+      
+      const res = await httpClient.post('/api/Users/changePassword', {newPassword: password});
+      alert('Đổi password thành công'); // Consider removing alerts in favor of proper UI updates
+      return res.data.content; // Assuming response data has a 'content' property with Store
+    }
   
     // async deleteStore(id: number): Promise<any> { // Type could be more specific based on API response
     //   const res = await httpClient.delete('/api/Store', { data: id });
