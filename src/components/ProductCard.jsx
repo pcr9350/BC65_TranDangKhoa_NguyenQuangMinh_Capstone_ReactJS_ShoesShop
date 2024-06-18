@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
-import ButtonBuyProduct from './ButtonBuyProduct';
+// import ButtonBuyProduct from './ButtonBuyProduct';
 
 const ProductCard = (props) => {
   let {product} = props;
@@ -14,7 +14,7 @@ const ProductCard = (props) => {
             <p className='card-text'>{product.price} $</p>
             <div className="d-flex">
             <NavLink to={`/detail/${product.id}`} className={'btn btn-dark mx-2'}>View Detail</NavLink>
-            <ButtonBuyProduct product={product}/>
+            {/* <ButtonBuyProduct product={product}/> */}
         </div>
             
         </div>

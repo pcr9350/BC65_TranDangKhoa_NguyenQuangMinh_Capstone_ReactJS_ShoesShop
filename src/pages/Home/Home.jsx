@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAllProductActionApi } from '../../redux/reducers/productReducer'
+// import { getAllProductActionApi } from '../../redux/reducers/productReducer'
 import ProductCard from '../../components/ProductCard'
 import useDataHome from './useDataHome'
 import { Carousel } from 'antd';
-import ButtonBuyProduct from '../../components/ButtonBuyProduct'
+// import ButtonBuyProduct from '../../components/ButtonBuyProduct'
 
 // css carousel antd:
 const contentStyle = {
@@ -47,7 +47,7 @@ const Home = () => {
                  <p>{item.description}</p>
                  <p className="text-center bg-danger w-25">{item.price} $</p>
                  <div className="w-25">
-                   <ButtonBuyProduct product={item} className="w-25" />
+                   {/* <ButtonBuyProduct product={item} className="w-25" /> */}
                  </div>
                </div>
              </div>

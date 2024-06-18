@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom'
 import { getDetailProductActionApi } from '../../redux/reducers/productReducer';
 import ProductCard from '../../components/ProductCard';
-import ButtonBuyProduct from '../../components/ButtonBuyProduct';
+// import ButtonBuyProduct from '../../components/ButtonBuyProduct';
 
 const Detail = () => {
   const params = useParams();
@@ -33,7 +33,7 @@ const Detail = () => {
                     return <button className='me-2 btn btn-dark' key={index}>{size}</button>
                 })}
                 <div className="mt-2">
-                    <ButtonBuyProduct product={productDetail} />
+                    {/* <ButtonBuyProduct product={productDetail} /> */}
                 </div>
             </div>
         </div>
