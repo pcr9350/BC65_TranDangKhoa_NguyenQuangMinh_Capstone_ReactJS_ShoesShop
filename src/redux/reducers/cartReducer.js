@@ -4,7 +4,7 @@ import { httpClient } from "../../util/util";
 
 const initialState = {
   products: JSON.parse(localStorage.getItem("userCart")) || [],
-  productsOrder: {}
+  
 };
 
 export const cartSlice = createSlice({

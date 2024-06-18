@@ -149,8 +149,39 @@ const Profile = () => {
         
         </form>
       </div>
-    
-    <h3>Hello ! {userProfile?.name}</h3>
+    <hr />
+      <h3>Order History</h3>
+      {userProfile.ordersHistory?.map((item, index) => {
+        return <div key={index}>
+          <p className='fs-5'>Order id: {item.id} have been placed on {item.date}</p>
+          <table className="table">
+            <thead>
+              <tr className='row'>
+                <th className='col-3'>Img</th>
+                <th className='col-3'>Name</th>
+                <th className='col-2'>Price</th>
+                <th className='col-2'>Quantity</th>
+                <th className='col-2'>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {item.orderDetail?.map((prod, index) => {
+                return <tr key={index} className='row'>
+                  <th className='col-3'>
+                    <img src={prod.image} alt={prod.name} width={50} height={50} />
+                  </th>
+                  <th className='col-3'>{prod.name}</th>
+                  <th className='col-2'>{prod.price} $</th>
+                  <th className='col-2'>{prod.quantity / 100}</th>
+                  <th className='col-2'>{prod.quantity / 100 * prod.price} $</th>
+                </tr>
+              })}
+            </tbody>
+
+          </table>
+        </div>
+      })}
+      
   </div>
   )
 }
