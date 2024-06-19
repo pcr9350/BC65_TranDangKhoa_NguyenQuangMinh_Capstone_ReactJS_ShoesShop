@@ -57,9 +57,12 @@ const HeaderHome = () => {
           <button
             className="btn btn-danger  my-sm-0"
             onClick={() => {
-              localStorage.removeItem(ACCESS_TOKEN);
+              if (confirm('Bạn chắc chắn muốn đăng xuất')) {
+                localStorage.removeItem(ACCESS_TOKEN);
               localStorage.removeItem(USER_LOGIN);
               window.location.reload();
+              routeLink.push('/login');
+              }
             }}
           >
             Logout
