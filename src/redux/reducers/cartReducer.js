@@ -1,8 +1,10 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { storageData } from "../../util/storageData";
+import { httpClient } from "../../util/util";
 
 const initialState = {
   products: JSON.parse(localStorage.getItem("userCart")) || [],
+  
 };
 
 export const cartSlice = createSlice({
@@ -57,6 +59,19 @@ export const cartSlice = createSlice({
       );
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase(addOrderActionAsync.fulfilled, (state, action) => {
+      // console.log("success", state, action);
+      alert('Đặt hàng thành công')
+    });
+    builder.addCase(addOrderActionAsync.pending, (state, action) => {
+      // console.log("pending");
+    });
+    builder.addCase(addOrderActionAsync.rejected, (state, action) => {
+      // console.log("error", state, action);
+      alert('Đặt hàng thất bại')
+    });
+  }
 });
 
 export const {
@@ -67,3 +82,19 @@ export const {
   removeProductToCard,
 } = cartSlice.actions;
 export default cartSlice.reducer;
+
+// Dùng thư viện từ redux toolkit để tạo ra action async
+export const addOrderActionAsync = createAsyncThunk(
+  "cartReducer/addOrderActionAsync",
+  async (orderSubmit, { dispatch }) => {
+    try {
+      const res = await httpClient.post("/api/Users/order", orderSubmit);  
+      return res.data.content; //return về giá trị nào thì ta sẽ nhận được giá trị đó tại fullfill của extrareducer
+    } catch (err) {
+      return Promise.reject(err);
+    } finally {
+      
+      return "finally"; //return về giá trị nào thì ta sẽ nhận được giá trị đó tại fullfill của extraReducer
+    }
+  }
+)

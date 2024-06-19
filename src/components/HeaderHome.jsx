@@ -24,11 +24,13 @@ const HeaderHome = () => {
   //           </NavLink>
 // =======
   const { userLogin } = useSelector((state) => state.userReducer);
-
+  const {products} = useSelector((state) => state.cartReducer)
+  let totalquantity = products.reduce((total, item) => total + item.count, 0);
   const renderLogin = () => {
     if (userLogin) {
       return (
         <div className="d-flex flex-row gap-2 align-items-center m-2">
+          <NavLink className='text-white mx-2 fs-4 text-decoration-none' to='/cart'>({totalquantity})<i className="fa fa-shopping-cart"></i></NavLink>
           <Link
             to={"/search"}
             className="d-flex flex-row align-items-center gap-1"
@@ -67,6 +69,19 @@ const HeaderHome = () => {
     } else {
       return (
         <>
+        <Link
+            to={"/search"}
+            className="d-flex flex-row align-items-center gap-1"
+            style={{
+              marginRight: 10,
+              background: "none",
+              border: 0,
+              textDecoration: "none",
+            }}
+          >
+            <BiSearch size={30} color="white" />
+            <h4 className="text-white">Search</h4>
+          </Link>
           <NavLink
             className="btn btn-primary pt-2 m-2 my-sm-0 text-decoration-none text-white"
             to="/login"

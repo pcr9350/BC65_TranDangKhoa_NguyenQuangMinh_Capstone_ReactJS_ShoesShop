@@ -166,6 +166,7 @@ import React, { useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import UpDownActions from "../../components/UpDownActions";
 import {
+  addOrderActionAsync,
   cartDown,
   cartUp,
   removeProductToCard,
@@ -173,6 +174,7 @@ import {
 
 const Cart = () => {
   const { products } = useSelector((state) => state.cartReducer);
+  const { userLogin } = useSelector((state) => state.userReducer);
   const dispatch = useDispatch();
   const [productSelected, setProductSelected] = useState([]);
 
@@ -203,9 +205,20 @@ const Cart = () => {
     );
   };
 
-  // Xử lý việc gửi đơn hàng
+  // Xử lý việc đặt đơn hàng
   const handleOrder = () => {
-    console.log("Đơn hàng đã được gửi");
+    const emailOrder = userLogin.email;
+    const orderSubmit = {
+      orderDetail: productSelected.map((product) => ({
+        productId: product.id,
+        quantity: product.count
+      })),
+      email: emailOrder
+    };
+    if(confirm("Bạn vui lòng xác nhận đơn hàng muốn mua ?")) {
+      const actionOrder = addOrderActionAsync(orderSubmit);
+      dispatch(actionOrder);
+    }
   };
 
   // Tính toán tổng giá của các sản phẩm được chọn
