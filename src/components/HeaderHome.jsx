@@ -60,7 +60,7 @@ const HeaderHome = () => {
               if (confirm('Bạn chắc chắn muốn đăng xuất')) {
                 localStorage.removeItem(ACCESS_TOKEN);
               localStorage.removeItem(USER_LOGIN);
-              window.location.reload();
+              // window.location.reload();
               routeLink.push('/login');
               }
             }}
