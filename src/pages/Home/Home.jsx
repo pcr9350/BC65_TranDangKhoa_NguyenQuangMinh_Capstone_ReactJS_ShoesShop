@@ -1,19 +1,14 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllProductActionApi } from "../../redux/reducers/productReducer";
 import ProductCard from "../../components/ProductCard";
 import useDataHome from "./useDataHome";
+import CarouselHome from "../../components/Carousel";
 
 const Home = () => {
   const { data } = useDataHome();
-  // let item1
-  // if(data.length > 0) {
-  //   item1 = data[0];
-  //   console.log(item1.image)
-  // }
   
   return (
     <div className="container">
+      <CarouselHome />
       <h3>Product list</h3>
       <div className="row">
         {data.map((item, index) => {
@@ -29,3 +24,7 @@ const Home = () => {
 };
 
 export default Home;
+
+
+
+
