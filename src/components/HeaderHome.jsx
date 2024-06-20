@@ -6,23 +6,7 @@ import { routeLink } from "../App";
 import { BiSearch, BiSearchAlt } from "react-icons/bi";
 
 const HeaderHome = () => {
-// <<<<<<< HEAD
-  // const {userLogin} = useSelector((state) => state.userReducer)
-  // // const {ProductCart} = useSelector((state) => state.cartReducer)
-  // // let totalquantity = ProductCart.reduce((total, item) => total + item.quantity, 0);
-  //   const renderLogin = () => {
-  //     if (userLogin) {
-  //       return (
-  //         <>
-  //           <p className="text-white pt-2">Hello: </p>
-  //           <NavLink
-  //             className="text-white pt-2 m-2 my-sm-0"
-  //             to="/profile"
-  //             aria-current="page"
-  //           >
-  //             {userLogin.email}{" "}
-  //           </NavLink>
-// =======
+
   const { userLogin } = useSelector((state) => state.userReducer);
   const {products} = useSelector((state) => state.cartReducer)
   let totalquantity = products.reduce((total, item) => total + item.count, 0);
@@ -30,7 +14,6 @@ const HeaderHome = () => {
     if (userLogin) {
       return (
         <div className="d-flex flex-row gap-2 align-items-center m-2">
-          <NavLink className='text-white mx-2 fs-4 text-decoration-none' to='/cart'>({totalquantity})<i className="fa fa-shopping-cart"></i></NavLink>
           <Link
             to={"/search"}
             className="d-flex flex-row align-items-center gap-1"
@@ -44,6 +27,12 @@ const HeaderHome = () => {
             <BiSearch size={30} color="white" />
             <h4 className="text-white">Search</h4>
           </Link>
+          <NavLink
+            className="text-white mx-2 fs-4 text-decoration-none"
+            to="/cart"
+          >
+            ({totalquantity})<i className="fa fa-shopping-cart"></i>
+          </NavLink>
           <h6 className="text-white my-auto">Hello </h6>
           <NavLink
             className="text-white my-sm-0"
@@ -52,17 +41,14 @@ const HeaderHome = () => {
           >
             {userLogin.email}{" "}
           </NavLink>
-{/* >>>>>>> main */}
 
           <button
             className="btn btn-danger  my-sm-0"
             onClick={() => {
-              if (confirm('Bạn chắc chắn muốn đăng xuất')) {
-                localStorage.removeItem(ACCESS_TOKEN);
+              localStorage.removeItem(ACCESS_TOKEN);
               localStorage.removeItem(USER_LOGIN);
-              // window.location.reload();
-              routeLink.push('/login');
-              }
+              window.location.reload();
+              routeLink.replace("/Home");
             }}
           >
             Logout
@@ -128,19 +114,8 @@ const HeaderHome = () => {
               Cart
             </NavLink>
           </li>
-          {/* <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                <div className="dropdown-menu" aria-labelledby="dropdownId">
-                    <a className="dropdown-item" href="#">Action 1</a>
-                    <a className="dropdown-item" href="#">Action 2</a>
-                </div>
-            </li> */}
         </ul>
         <form className="d-flex my-2 my-lg-0">
-          {/* <input className="form-control me-sm-2" type="text" placeholder="Search" />
-            <button className="btn btn-outline-success my-2 my-sm-0" type="submit">
-                Search
-            </button> */}
           {renderLogin()}
         </form>
       </div>

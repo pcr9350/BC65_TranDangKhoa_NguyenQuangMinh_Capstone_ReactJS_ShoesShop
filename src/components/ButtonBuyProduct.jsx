@@ -3,7 +3,6 @@ import { ACCESS_TOKEN } from '../util/util';
 
 import { useDispatch } from 'react-redux';
 import { addProductToCart } from '../redux/reducers/cartReducer';
-// import { addItemCartActionAsync } from '../redux/reducers/cartReducer';
 
 const ButtonBuyProduct = (props) => {
     const product = {...props.product, count:1};

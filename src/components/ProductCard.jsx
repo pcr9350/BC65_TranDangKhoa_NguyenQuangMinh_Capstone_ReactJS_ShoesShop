@@ -8,7 +8,7 @@ const ProductCard = (props) => {
       <img src={product.image} alt="..." />
       <div className="card-body">
         <h3>{product.name}</h3>
-        <p>{product.price}</p>
+        <h5>{product.price} $</h5>
         <NavLink to={`/detail/${product.id}`} className={"btn btn-dark"}>
           View Detail
         </NavLink>
