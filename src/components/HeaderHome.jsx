@@ -48,7 +48,7 @@ const HeaderHome = () => {
               localStorage.removeItem(ACCESS_TOKEN);
               localStorage.removeItem(USER_LOGIN);
               window.location.reload();
-              routeLink.replace("/Home");
+              routeLink.replace('/home');
             }}
           >
             Logout
