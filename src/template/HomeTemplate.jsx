@@ -7,6 +7,7 @@ import { MdPerson } from 'react-icons/md';
 import { FaInfoCircle } from 'react-icons/fa';
 
 const footerDesktop = (
+
   <footer className='bg-dark text-white text-center p-3' style={{ padding: '1rem', backgroundColor: '#343a40', color: '#fff', textAlign: 'center' }}>
     <div className="d-flex justify-content-between w-100" style={{ display: 'flex', justifyContent: 'space-between', width: '100%', flexWrap: 'wrap' }}>
       <div className="col-4" style={{ flex: 1, minWidth: '200px', textAlign: 'left' }}>
@@ -40,7 +41,7 @@ const footerDesktop = (
       <p>
         <FaInfoCircle className="inline-block mr-3 align-middle" style={{ display: 'inline-block', marginRight: '0.75rem', verticalAlign: 'middle' }} />
         <span className="align-middle" style={{ verticalAlign: 'middle' }}>
-          Cybersoft, BC65 Front End: 02/2024 ~ 03/2024
+          Cybersoft, BC65 Front End: 02/2024 ~ 08/2024
         </span>
       </p>
     </div>
