@@ -170,14 +170,17 @@ import {
   cartDown,
   cartUp,
   removeProductToCard,
+  setCartAfterBuy,
+
 } from "../../redux/reducers/cartReducer";
+import _ from 'lodash'
 
 const Cart = () => {
   const { products } = useSelector((state) => state.cartReducer);
   const { userLogin } = useSelector((state) => state.userReducer);
   const dispatch = useDispatch();
   const [productSelected, setProductSelected] = useState([]);
-
+  let data = _.orderBy(products,['id']);
   // Xử lý việc xóa sản phẩm khỏi giỏ hàng với xác nhận
   const handleRemoveProductInCart = (id) => {
     if (confirm("Bạn có chắc chắn muốn xóa sản phẩm này không?"))
@@ -218,6 +221,9 @@ const Cart = () => {
     if(confirm("Bạn vui lòng xác nhận đơn hàng muốn mua ?")) {
       const actionOrder = addOrderActionAsync(orderSubmit);
       dispatch(actionOrder);
+      const filteredProducts = _.difference(data, productSelected);
+      const actionSetCartAfterBuy = setCartAfterBuy(filteredProducts);
+      dispatch(actionSetCartAfterBuy)
     }
   };
 
@@ -232,7 +238,7 @@ const Cart = () => {
   // Xử lý việc chọn/bỏ chọn tất cả sản phẩm
   const handleSelectAll = () => {
     setProductSelected((prevSelected) =>
-      prevSelected.length === products.length ? [] : products
+      prevSelected.length === data.length ? [] : data
     );
   };
 
@@ -247,7 +253,7 @@ const Cart = () => {
               <th scope="col">
                 <input
                   type="checkbox"
-                  checked={productSelected.length === products.length}
+                  checked={productSelected.length === data.length}
                   onChange={handleSelectAll}
                 />
               </th>
@@ -261,7 +267,7 @@ const Cart = () => {
             </tr>
           </thead>
           <tbody>
-            {products.map((product) => (
+            {data.map((product) => (
               <tr key={product.id}>
                 <th>
                   <input
@@ -272,34 +278,34 @@ const Cart = () => {
                     )}
                   />
                 </th>
-                <th>{product.id}</th>
-                <th>
+                <td>{product.id}</td>
+                <td>
                   <img src={product.image} width={50} alt={product.name} />
-                </th>
-                <th>{product.name}</th>
-                <th>{product.price}</th>
-                <th>
+                </td>
+                <td>{product.name}</td>
+                <td>{product.price} $</td>
+                <td>
                   <UpDownActions
                     key={product.id}
                     product={product}
                     handleUpDownBtn={(type) => handleUpDownBtn(type, product)}
                   />
-                </th>
-                <th>{product.price * product.count}</th>
-                <th>
+                </td>
+                <td>{product.price * product.count} $</td>
+                <td>
                   <button
                     className="btn btn-danger"
                     onClick={() => handleRemoveProductInCart(product.id)}
                   >
                     Xóa
                   </button>
-                </th>
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
 
-        <div>Tổng giá: {totalPrice}</div>
+        <div>Tổng giá: {totalPrice} $</div>
 
         <button
           className={`btn border-0 p-2 rounded-2 ${

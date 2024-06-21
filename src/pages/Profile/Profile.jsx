@@ -6,6 +6,7 @@ import { userApi } from '../../services/apiStore/user/userApi';
 import { useFormik } from 'formik';
 import * as yup from 'yup'
 import moment from 'moment';
+import { deleteOrderActionAsync } from '../../redux/reducers/cartReducer';
 
 const Profile = () => {
   const {userProfile} = useSelector((state) => state.userReducer);
@@ -85,7 +86,7 @@ const Profile = () => {
         phone:userProfile.phone,
         gender:userProfile.gender
       });
-    }, [userProfile.name, userProfile.email, userProfile.phone, userProfile.gender]);
+    }, [userProfile.name, userProfile.email, userProfile.phone, userProfile.gender, userProfile.ordersHistory]);
     
     
   return (
@@ -161,23 +162,30 @@ const Profile = () => {
           <caption><p className='fs-5 text-primary'>Order id: {item.id} have been placed on {moment(item.date).format('DD/MM/yyyy HH:mm:ss')}</p></caption>
             <thead>
               <tr className='row table-primary'>
-                <th className='col-3' scope="col">Img</th>
-                <th className='col-3' scope="col">Name</th>
+                <th className='col-2' scope="col">Img</th>
+                <th className='col-2' scope="col">Name</th>
                 <th className='col-2' scope="col">Price</th>
                 <th className='col-2' scope="col">Quantity</th>
                 <th className='col-2' scope="col">Total</th>
+                <th className='col-2' scope="col"><button className='btn btn-danger' onClick={()=>{
+                  if(confirm("Bạn có chắc chắn muốn xóa đơn hàng này không ?")) {
+                    const actionDeleteOrder = deleteOrderActionAsync(item.id);
+                    dispatch(actionDeleteOrder);
+                  }
+                }}>Xóa đơn hàng</button></th>
               </tr>
             </thead>
             <tbody>
               {item.orderDetail?.map((prod, index) => {
                 return <tr key={index} className='row'>
-                  <td className='col-3'>
+                  <td className='col-2'>
                     <img src={prod.image} alt={prod.name} width={50} height={50} />
                   </td>
-                  <td className='col-3'>{prod.name}</td>
+                  <td className='col-2'>{prod.name}</td>
                   <td className='col-2'>{prod.price} $</td>
                   <td className='col-2'>{prod.quantity / 100}</td>
                   <td className='col-2'>{prod.quantity / 100 * prod.price} $</td>
+                  <td className='col-2'></td>
                 </tr>
               })}
             </tbody>
