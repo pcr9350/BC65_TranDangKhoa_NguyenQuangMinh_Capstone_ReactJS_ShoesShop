@@ -42,7 +42,7 @@ export const loginApiActionAsync = (userLogin) => {
       setCookie(ACCESS_TOKEN, res.data.content.accessToken, 30);
       const action = setLoginAction(res.data.content);
       dispatch(action);
-      routeLink.push("/profile");
+      routeLink.push("/home");
     } catch (err) {
       console.log(err);
     }
