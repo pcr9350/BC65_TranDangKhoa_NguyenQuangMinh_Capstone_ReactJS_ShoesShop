@@ -8,7 +8,7 @@ import { BiSearch, BiSearchAlt } from "react-icons/bi";
 const HeaderHome = () => {
 
   const { userLogin } = useSelector((state) => state.userReducer);
-  const {products} = useSelector((state) => state.cartReducer)
+  const { products } = useSelector((state) => state.cartReducer)
   let totalquantity = products.reduce((total, item) => total + item.count, 0);
   const renderLogin = () => {
     if (userLogin) {
@@ -47,6 +47,7 @@ const HeaderHome = () => {
             onClick={() => {
               localStorage.removeItem(ACCESS_TOKEN);
               localStorage.removeItem(USER_LOGIN);
+              localStorage.removeItem("userCart")
               window.location.reload();
               routeLink.replace('/home');
             }}
