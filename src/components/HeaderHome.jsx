@@ -49,7 +49,7 @@ const HeaderHome = () => {
               localStorage.removeItem(USER_LOGIN);
               localStorage.removeItem("userCart")
               toast.success('Bạn đã đăng xuất')
-              window.location.reload();
+              window.location.href('/home')
               
             }}>Logout</NavLink>
           {/* <button
