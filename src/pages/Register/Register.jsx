@@ -89,6 +89,7 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { userApi } from '../../services/apiStore/user/userApi';
 import { routeLink } from '../../App';
+import toast from 'react-hot-toast';
 
 const Register = () => {
   const queryClient = useQueryClient();
@@ -99,9 +100,13 @@ const Register = () => {
     mutationFn: userApi.addUser, // Hàm thực hiện API để thêm người dùng
     onSuccess: (res, variables, context) => {
       // Xử lý sau khi API thành công
-      routeLink.push('/login'); // Chuyển hướng người dùng đến trang đăng nhập
       frmRegisterUser.resetForm(); // Reset form sau khi đăng ký thành công
+      routeLink.push('/login'); // Chuyển hướng người dùng đến trang đăng nhập
     },
+    onError: (errors) => {
+      toast.error(`Đăng kí thất bại do ${errors.response.data.message}`)
+      
+    }
   });
 
   // Sử dụng Formik để quản lý form và xác thực

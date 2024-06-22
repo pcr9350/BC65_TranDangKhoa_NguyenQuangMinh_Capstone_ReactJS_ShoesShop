@@ -3,6 +3,7 @@ import { ACCESS_TOKEN } from '../util/util';
 
 import { useDispatch } from 'react-redux';
 import { addProductToCart } from '../redux/reducers/cartReducer';
+import toast from 'react-hot-toast';
 
 const ButtonBuyProduct = (props) => {
     const product = {...props.product, count:1};
@@ -14,7 +15,7 @@ const ButtonBuyProduct = (props) => {
         const actionBuyAsync = addProductToCart(product)
           dispatch(actionBuyAsync);
         } else {
-          alert("Please Login to buy shoes");
+          toast.error("Vui lòng đăng nhập để mua hàng")
         }
         
       }}>Buy now</button>

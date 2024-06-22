@@ -63,7 +63,7 @@ const Cart = () => {
       dispatch(actionSetCartAfterBuy)
       storageData.setData("userCart", filteredProducts)
       window.location.reload();
-    }
+    } else return
   };
 
   // Tính toán tổng giá của các sản phẩm được chọn

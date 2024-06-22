@@ -8,6 +8,7 @@ import {
 import { ACCESS_TOKEN, USER_LOGIN, httpClient } from "../../util/util";
 import { routeLink } from "../../App";
 import { useDispatch } from "react-redux";
+import toast from "react-hot-toast";
 
 const initialState = {
   userLogin: getDataJsonStorage(USER_LOGIN),
@@ -31,7 +32,7 @@ export const { setLoginAction, setProfileAction } = userReducer.actions;
 
 export default userReducer.reducer;
 
-export const loginApiActionAsync = (userLogin) => {
+export const loginApiActionAsync = (userLogin: { email: string; password: string; }) => {
   return async (dispatch: (arg0: { payload: any; type: "userReducer/setLoginAction"; }) => void) => {
     try {
       const res = await httpClient.post("/api/users/signin", userLogin);
@@ -42,9 +43,10 @@ export const loginApiActionAsync = (userLogin) => {
       setCookie(ACCESS_TOKEN, res.data.content.accessToken, 30);
       const action = setLoginAction(res.data.content);
       dispatch(action);
+      toast.success("Đăng nhập thành công")
       routeLink.push("/home");
     } catch (err) {
-      alert(`Sai thông tin đăng nhập`)
+      toast.error("Sai thông tin đăng nhập")
       console.log(err);
     }
   };

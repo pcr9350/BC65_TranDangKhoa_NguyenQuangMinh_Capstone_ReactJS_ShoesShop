@@ -7,6 +7,8 @@ import { useFormik } from 'formik';
 import * as yup from 'yup'
 import moment from 'moment';
 import { deleteOrderActionAsync } from '../../redux/reducers/cartReducer';
+import toast from 'react-hot-toast';
+import { values } from 'lodash';
 
 const Profile = () => {
   const {userProfile} = useSelector((state) => state.userReducer);
@@ -22,14 +24,17 @@ const Profile = () => {
   // Xử lý update user
   const queryClient = useQueryClient();
     //mutation Update User
-    const mutation = useMutation({
+    const mutationUpdateUser = useMutation({
         mutationKey: ['updateUserApi'],
         mutationFn: userApi.updateUser,
         onSuccess: (res) => {{
             // Xử lý sau khi success api
             getProfileApi();
             // queryClient.invalidateQueries('storeListApi');
-        }}
+        }},
+        onError: (errors) => {
+          toast.error(`Đổi thông tin thất bại do ${errors.response.data.message}`)
+        }
     });
 
     //mutation Update Password 
@@ -39,7 +44,10 @@ const Profile = () => {
       onSuccess: (res) => {{
           // Xử lý sau khi success api
           queryClient.invalidateQueries('updateUserApi');
-      }}
+      }},
+      onError: (errors) => {
+        toast.error(`Đổi mật khẩu thất bại do ${errors.response.data.message}`)
+      }
   });
 
     // Dùng formik quản lý frmUpdateUser 
@@ -57,8 +65,9 @@ const Profile = () => {
       gender: yup.boolean().oneOf([true, false], 'Gender is required'),
       }),
       onSubmit: (values) => {
+        console.log(values)
        // Lấy dữ liệu từ form thành công
-            mutation.mutateAsync(values);
+            mutationUpdateUser.mutateAsync(values);
       }
     });
 
@@ -80,13 +89,8 @@ const Profile = () => {
     
     useEffect(()=>{
       getProfileApi();
-      frmUpdateUser.setValues({
-        name: userProfile.name,
-        email: userProfile.email,
-        phone:userProfile.phone,
-        gender:userProfile.gender
-      });
-    }, [userProfile.name, userProfile.email, userProfile.phone, userProfile.gender, userProfile.ordersHistory]);
+      
+    }, [userProfile.ordersHistory]);
     
     
   return (
@@ -99,21 +103,21 @@ const Profile = () => {
         </div>
 
         {/* Form Update Info  */}
-        <form className="col-5" onSubmit={frmUpdateUser.handleSubmit}>
+        <form action='' className="col-5" onSubmit={frmUpdateUser.handleSubmit}>
           <p className='p--title fs-5'>Info of {userProfile.name}</p>
         <div className='form-group'>
-          <label>Email:</label>
-          <input className='form-control mt-2' name="email" value={frmUpdateUser.values.email} onChange={frmUpdateUser.handleChange} onBlur={frmUpdateUser.handleBlur}/>
+          <label htmlFor='email'>Email:</label>
+          <input className='form-control mt-2' type='text' name="email" defaultValue={userProfile.email} onChange={frmUpdateUser.handleChange} onBlur={frmUpdateUser.handleBlur}/>
           {frmUpdateUser.errors.email && <div className="text-danger">{frmUpdateUser.errors.email}</div>}
         </div>
         <div className='form-group'>
           <label>Name:</label>
-          <input className='form-control mt-2' name="name" value={frmUpdateUser.values.name} onChange={frmUpdateUser.handleChange} onBlur={frmUpdateUser.handleBlur}/>
+          <input className='form-control mt-2' name="name" defaultValue={userProfile.name} onChange={frmUpdateUser.handleChange} onBlur={frmUpdateUser.handleBlur}/>
           {frmUpdateUser.errors.name && <div className="text-danger">{frmUpdateUser.errors.name}</div>}
         </div>
         <div className='form-group'>
           <label>Phone:</label>
-          <input className='form-control mt-2' name="phone" value={frmUpdateUser.values.phone} onChange={frmUpdateUser.handleChange} onBlur={frmUpdateUser.handleBlur}/>
+          <input className='form-control mt-2' type='text' name="phone" defaultValue={userProfile.phone} onChange={frmUpdateUser.handleChange} onBlur={frmUpdateUser.handleBlur}/>
           {frmUpdateUser.errors.phone && <div className="text-danger">{frmUpdateUser.errors.phone}</div>}
         </div>
         <div className='form-group'>
