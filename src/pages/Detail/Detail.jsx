@@ -11,7 +11,7 @@ const Detail = () => {
   const params = useParams();
   const { id } = params;
   const { productDetail } = useSelector((state) => state.productReducer);
-
+  const { userLogin } = useSelector((state) => state.userReducer);
   const [currentProduct, setCurrentProduct] = useState([]);
 
   useEffect(() => {
@@ -31,11 +31,14 @@ const Detail = () => {
 
   const handleAddToCart = () => {
     if (currentProduct.count === 0) return;
+    if (userLogin) {
     dispatch(addProductToCart(currentProduct));
     toast.success("Add to cart successfully!");
 
     // reset count in product
     setCurrentProduct({ ...currentProduct, count: 0 });
+    } else toast.error("Vui lòng đăng nhập để mua hàng");
+    
   };
 
   const handleUpDownBtn = (type) => {

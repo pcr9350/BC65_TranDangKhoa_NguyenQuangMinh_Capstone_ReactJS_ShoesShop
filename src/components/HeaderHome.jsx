@@ -4,6 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 import { ACCESS_TOKEN, USER_LOGIN } from "../util/util";
 import { routeLink } from "../App";
 import { BiSearch, BiSearchAlt } from "react-icons/bi";
+import toast from "react-hot-toast";
 
 const HeaderHome = () => {
 
@@ -24,7 +25,7 @@ const HeaderHome = () => {
               textDecoration: "none",
             }}
           >
-            <BiSearch size={30} color="white" />
+            <BiSearch size={25} color="white" />
             <h4 className="text-white">Search</h4>
           </Link>
           <NavLink
@@ -37,12 +38,21 @@ const HeaderHome = () => {
           <NavLink
             className="text-white my-sm-0"
             to="/profile"
-            aria-current="page"
           >
             {userLogin.email}{" "}
           </NavLink>
-
-          <button
+            <NavLink className="text-decoration-none text-white btn btn-danger rounded-5"
+            style={{width: 120}} to="/home"
+            onClick={()=>{
+              
+              localStorage.removeItem(ACCESS_TOKEN);
+              localStorage.removeItem(USER_LOGIN);
+              localStorage.removeItem("userCart")
+              toast.success('Bạn đã đăng xuất')
+              window.location.reload();
+              
+            }}>Logout</NavLink>
+          {/* <button
             className="btn btn-danger rounded-5 my-sm-0"
             onClick={() => {
               localStorage.removeItem(ACCESS_TOKEN);
@@ -53,7 +63,7 @@ const HeaderHome = () => {
             }}
           >
             Logout
-          </button>
+          </button> */}
         </div>
       );
     } else {
@@ -72,18 +82,18 @@ const HeaderHome = () => {
             <BiSearch size={30} color="white" />
             <h4 className="text-white">Search</h4>
           </Link>
-          <button className="btn btn-primary rounded-5 pt-2 m-2 my-sm-0" onClick={()=>{
-            routeLink.push('/login');
-          }}>
-          {/* <NavLink
-            className="text-decoration-none text-white"
+          {/* <button className="btn btn-primary rounded-5 pt-2 m-2 my-sm-0" onClick={()=>{
+          }}>Login
+          </button> */}
+
+          <NavLink
+            className="text-decoration-none text-white btn btn-primary rounded-5 mx-2"
+            style={{width: 120}}
             to="/login"
-            aria-current="page"
           >
             Login
-          </NavLink> */}
-          Login
-          </button>
+          </NavLink>
+          
           
         </>
       );

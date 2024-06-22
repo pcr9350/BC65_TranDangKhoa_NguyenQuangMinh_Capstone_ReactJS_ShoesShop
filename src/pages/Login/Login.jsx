@@ -50,6 +50,7 @@ import * as yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { loginApiActionAsync } from '../../redux/reducers/userReducer';
+import toast from 'react-hot-toast';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -65,24 +66,25 @@ const Login = () => {
       password: yup.string().required('Mật khẩu không được để trống')
     }),
     onSubmit: async (userLogin) => {
-      try {
-        const response = await dispatch(loginApiActionAsync(userLogin));
+      // try {
+        dispatch(loginApiActionAsync(userLogin))
         // Handle successful login based on your API response structure
-        if (response.success) {
-          navigate('/');
-        } else {
+        // if (response.success) {
+        //   toast.success('Đăng nhập thành công')
+        //   navigate('/');
+        // } else {
           // Extract and display error message from response (if available)
-          const errorMessage = response.error?.message || 'Login failed';
-          alert(`Login failed: ${errorMessage}`);
+          // const errorMessage = response.error?.message || 'Login failed';
+          // alert(`Login failed: ${errorMessage}`);
           // Optionally, dispatch an action to update UI with error message
           // dispatch(setErrorMessage(errorMessage));
-        }
-      } catch (error) {
+        },
+      // } catch (error) {
         // console.error('Login failed:', error);
         // Optionally, dispatch an action to update UI with a generic error message
         // dispatch(setErrorMessage('An unexpected error occurred'));
-      }
-    },
+      // }
+    // },
   });
 
   return (

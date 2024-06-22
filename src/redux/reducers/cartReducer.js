@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { storageData } from "../../util/storageData";
 import { httpClient } from "../../util/util";
+import toast from "react-hot-toast";
 
 const initialState = {
   products: JSON.parse(localStorage.getItem("userCart")) || [],
@@ -65,26 +66,26 @@ export const cartSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(addOrderActionAsync.fulfilled, (state, action) => {
       // console.log("success", state, action);
-      alert('Đặt hàng thành công')
+      toast.success("Đặt hàng thành công")
     });
     builder.addCase(addOrderActionAsync.pending, (state, action) => {
       // console.log("pending");
     });
     builder.addCase(addOrderActionAsync.rejected, (state, action) => {
       // console.log("error", state, action);
-      alert('Đặt hàng thất bại')
+      toast.error("Đặt hàng thất bại")
     });
 
     builder.addCase(deleteOrderActionAsync.fulfilled, (state, action) => {
       // console.log("success", state, action);
-      alert('Xóa đơn hàng thành công')
+      toast.success("Xóa đơn hàng thành công")
     });
     builder.addCase(deleteOrderActionAsync.pending, (state, action) => {
       // console.log("pending");
     });
     builder.addCase(deleteOrderActionAsync.rejected, (state, action) => {
       // console.log("error", state, action);
-      alert('Xóa đơn hàng thất bại')
+      toast.error('Xóa đơn hàng thất bại')
     });
   }
 });
