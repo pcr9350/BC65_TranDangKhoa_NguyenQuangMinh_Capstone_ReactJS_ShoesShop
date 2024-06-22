@@ -44,55 +44,53 @@ const Search = () => {
   }, [category]);
 
   return (
-    <div>
-      <div className="d-flex flex-column gap-1 p-5">
-        <h4>Search</h4>
-        <div className="d-flex flex row align-items-center gap-4">
-          <input
+    <div className="container">
+      
+        <p className="p--title mt-2">Search</p>
+        <h5 className="mt-2">Name</h5>
+        <input
             placeholder="product name..."
             style={{ width: 300, background: "#ddd" }}
-            className="border-0 outline-0 px-2 py-2"
+            className="rounded-1 form-control"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-          />
-          <button
-            style={{ background: "#6200EE", width: 100, height: 40 }}
-            className="rounded-5 border-0 text-white"
-            onClick={handleSearch}
-          >
-            SEARCH
-          </button>
-        </div>
-      </div>
-
-      <div
-        className="w-100 p-2 px-4"
-        style={{
-          background: "linear-gradient(#DE119B, #6200EE)",
-          fontSize: 30,
-          color: "white",
-        }}
-      >
-        Search result
-      </div>
-
-      <div className="px-5 py-2">
-        <h4 style={{ color: "gray" }}>Price</h4>
-
+        />
+                  
+      <div className="mt-2">
+        <h5>Price</h5>
+        <div className="d-flex">
         <select
           name=""
           id=""
-          className="border-0 p-2 outline-0"
-          style={{ background: "#ddd", fontSize: 22, width: 300 }}
+          className="border-0 p-2 form-control"
+          style={{ background: "#ddd", width: 300 }}
           onChange={(e) => setCategory(e.target.value)}
           value={category}
         >
           <option value="decrease">decrease</option>
           <option value="ascending">ascending</option>
         </select>
+        <button
+            style={{ width: 100, height: 40 }}
+            className="rounded-5 mx-2"
+            onClick={handleSearch}
+          >
+            Search
+          </button>
+        </div>
+        
       </div>
 
-      <div className="row container mx-auto mt-5">
+      <div>
+        <p className="w-100 rounded-2 mt-4 p--title"
+        >
+        Search result
+        </p>
+      </div>
+
+      
+
+      <div className="row mx-auto mt-4">
         {dataResearch?.map((product) => (
           <div className="col-lg-3 col-md-4 col-sm-6 mb-4" key={product.id}>
             <ProductCard product={product} />

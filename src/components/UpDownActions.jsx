@@ -7,7 +7,7 @@ const UpDownActions = ({ product, handleUpDownBtn }) => {
       style={{ width: 130 }}
     >
       <button
-        className="border-0"
+        className="border-0 rounded-3"
         style={{ width: 40, height: 40 }}
         onClick={() => handleUpDownBtn("down")}
       >
@@ -20,7 +20,7 @@ const UpDownActions = ({ product, handleUpDownBtn }) => {
         {product?.count}
       </p>
       <button
-        className="border-0"
+        className="border-0 rounded-3"
         style={{ width: 40, height: 40 }}
         onClick={() => handleUpDownBtn("up")}
       >

@@ -43,7 +43,7 @@ const HeaderHome = () => {
           </NavLink>
 
           <button
-            className="btn btn-danger  my-sm-0"
+            className="btn btn-danger rounded-5 my-sm-0"
             onClick={() => {
               localStorage.removeItem(ACCESS_TOKEN);
               localStorage.removeItem(USER_LOGIN);
@@ -72,13 +72,16 @@ const HeaderHome = () => {
             <BiSearch size={30} color="white" />
             <h4 className="text-white">Search</h4>
           </Link>
+          <button className="btn btn-primary rounded-5 pt-2 m-2 my-sm-0">
           <NavLink
-            className="btn btn-primary pt-2 m-2 my-sm-0 text-decoration-none text-white"
+            className="text-decoration-none text-white"
             to="/login"
             aria-current="page"
           >
             Login
           </NavLink>
+          </button>
+          
         </>
       );
     }
