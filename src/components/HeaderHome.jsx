@@ -72,14 +72,17 @@ const HeaderHome = () => {
             <BiSearch size={30} color="white" />
             <h4 className="text-white">Search</h4>
           </Link>
-          <button className="btn btn-primary rounded-5 pt-2 m-2 my-sm-0">
-          <NavLink
+          <button className="btn btn-primary rounded-5 pt-2 m-2 my-sm-0" onClick={()=>{
+            routeLink.push('/login');
+          }}>
+          {/* <NavLink
             className="text-decoration-none text-white"
             to="/login"
             aria-current="page"
           >
             Login
-          </NavLink>
+          </NavLink> */}
+          Login
           </button>
           
         </>
