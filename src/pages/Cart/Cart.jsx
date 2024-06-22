@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import UpDownActions from "../../components/UpDownActions";
 import {
@@ -62,10 +62,12 @@ const Cart = () => {
       const actionSetCartAfterBuy = setCartAfterBuy(filteredProducts);
       dispatch(actionSetCartAfterBuy)
       storageData.setData("userCart", filteredProducts)
-      window.location.reload();
+      
     } else return
   };
-
+  useEffect(()=>{
+    
+  }, [storageData])
   // Tính toán tổng giá của các sản phẩm được chọn
   const totalPrice = useMemo(() => {
     return productSelected.reduce(
