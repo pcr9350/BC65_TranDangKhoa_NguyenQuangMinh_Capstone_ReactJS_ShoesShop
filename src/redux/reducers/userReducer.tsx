@@ -32,7 +32,7 @@ export const { setLoginAction, setProfileAction } = userReducer.actions;
 export default userReducer.reducer;
 
 export const loginApiActionAsync = (userLogin) => {
-  return async (dispatch) => {
+  return async (dispatch: (arg0: { payload: any; type: "userReducer/setLoginAction"; }) => void) => {
     try {
       const res = await httpClient.post("/api/users/signin", userLogin);
 
@@ -44,13 +44,14 @@ export const loginApiActionAsync = (userLogin) => {
       dispatch(action);
       routeLink.push("/home");
     } catch (err) {
+      alert(`Sai thông tin đăng nhập`)
       console.log(err);
     }
   };
 };
 
 export const getProfileActionAsync = () => {
-  return async (dispatch) => {
+  return async (dispatch: (arg0: { payload: any; type: "userReducer/setProfileAction"; }) => void) => {
     const res = await httpClient.post("/api/users/getProfile");
 
     const action = setProfileAction(res.data.content);

@@ -130,8 +130,9 @@ const Register = () => {
 
   return (
     <form className='container' onSubmit={frmRegisterUser.handleSubmit}>
-      <h3>Create user</h3>
-      <div className='w-75 mx-auto'>
+      
+      <div className='w-50 mx-auto mt-2'>
+      <p className='p--title text-center'>Đăng ký</p>
         <div className='form-group'>
           <label>Name</label>
           <input
@@ -170,7 +171,7 @@ const Register = () => {
         </div>
         <div className='form-group me-2 my-2'>
           <label className='me-2'>Gender:</label>
-          <div>
+          
             <label htmlFor='male'>Male</label>
             <input
               id='male'
@@ -182,8 +183,8 @@ const Register = () => {
               onChange={frmRegisterUser.handleChange}
               onBlur={frmRegisterUser.handleBlur}
             />
-          </div>
-          <div>
+          
+          
             <label htmlFor='female'>Female</label>
             <input
               id='female'
@@ -195,7 +196,7 @@ const Register = () => {
               onChange={frmRegisterUser.handleChange}
               onBlur={frmRegisterUser.handleBlur}
             />
-          </div>
+          
           {frmRegisterUser.errors.gender && (
             <div className='text-danger'>{frmRegisterUser.errors.gender}</div>
           )}
@@ -214,8 +215,8 @@ const Register = () => {
           )}
         </div>
         <div className='form-group'>
-          <button className='btn btn-dark mt-2' type='submit' disabled={!frmRegisterUser.isValid}>
-            Create User
+          <button className='btn btn-primary mt-2 rounded-5' style={{width: 120}} type='submit' disabled={!frmRegisterUser.isValid}>
+            Đăng ký
           </button>
         </div>
       </div>

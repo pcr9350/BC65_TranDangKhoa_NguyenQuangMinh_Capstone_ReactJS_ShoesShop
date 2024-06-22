@@ -9,7 +9,7 @@ const Home = () => {
   return (
     <div className="container">
       <CarouselHome />
-      <h3>Product list</h3>
+      <p className="p--title">Product list</p>
       <div className="row">
         {data.map((item, index) => {
           return (

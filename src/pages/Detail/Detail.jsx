@@ -43,14 +43,14 @@ const Detail = () => {
       if (currentProduct.count === 10) return; // add maximum 10
       setCurrentProduct({ ...currentProduct, count: currentProduct.count + 1 });
     } else {
-      if (product.count === 0) return;
+      if (currentProduct.count === 0) return;
       setCurrentProduct({ ...currentProduct, count: currentProduct.count - 1 });
     }
   };
 
   return (
     <div className="container">
-      <h3>Detail Page - {id}</h3>
+      <p className="p--title mt-2">Detail Shoes ID: {id}</p>
       <div className="row">
         <div className="col-4">
           <img src={productDetail?.image} alt="..." className="w-100" />
@@ -60,19 +60,19 @@ const Detail = () => {
           <p>{productDetail?.description}</p>
           {productDetail?.size.map((size, index) => {
             return (
-              <button className="me-2 btn btn-dark" key={index}>
+              <p className="me-2 btn btn-dark rounded-3" key={index}>
                 {size}
-              </button>
+              </p>
             );
           })}
-          <div className="mt-5 d-flex flex-column align-items-start gap-2">
+          <div className="mt-2 d-flex flex-column align-items-start gap-2">
             <UpDownActions
               product={currentProduct}
               handleUpDownBtn={handleUpDownBtn}
             />
             <button
-              className={`btn btn-dark ${!currentProduct?.count && "disabled"}`}
-              style={{ width: 130 }}
+              className={`btn rounded-5 ${!currentProduct?.count && "disabled"}`}
+              style={{ width: 130, backgroundColor: '#6200EE', color: 'white'}}
               onClick={handleAddToCart}
             >
               Add to cart
@@ -80,8 +80,8 @@ const Detail = () => {
           </div>
         </div>
       </div>
-      <div className="mt-2">
-        <h3>Related Product</h3>
+      <div className="mt-1">
+        <p className="p--title">Related Product</p>
         <div className="row">
           {productDetail?.relatedProducts.map((prod, index) => {
             return (

@@ -66,18 +66,30 @@ const Login = () => {
     }),
     onSubmit: async (userLogin) => {
       try {
-        await dispatch(loginApiActionAsync(userLogin));
-        navigate('/');
+        const response = await dispatch(loginApiActionAsync(userLogin));
+        // Handle successful login based on your API response structure
+        if (response.success) {
+          navigate('/');
+        } else {
+          // Extract and display error message from response (if available)
+          const errorMessage = response.error?.message || 'Login failed';
+          alert(`Login failed: ${errorMessage}`);
+          // Optionally, dispatch an action to update UI with error message
+          // dispatch(setErrorMessage(errorMessage));
+        }
       } catch (error) {
-        console.error('Login failed', error);
+        // console.error('Login failed:', error);
+        // Optionally, dispatch an action to update UI with a generic error message
+        // dispatch(setErrorMessage('An unexpected error occurred'));
       }
-    }
+    },
   });
 
   return (
     <div className='container'>
+      
       <form onSubmit={frmLogin.handleSubmit} className='w-50 mx-auto'>
-        <h3>Đăng nhập</h3>
+      <p className='p--title text-center mt-2'>Đăng nhập</p>
         <div className="form-group">
           <label htmlFor='email'>Email: </label>
           <input
@@ -109,7 +121,8 @@ const Login = () => {
         </div>
         <div className="form-group">
           <button
-            className='btn btn-success mt-2'
+            className='btn btn-primary mt-2 rounded-5'
+            style={{width: 120}}
             type='submit'
             disabled={!frmLogin.isValid || frmLogin.isSubmitting}
           >

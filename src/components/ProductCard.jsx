@@ -6,12 +6,12 @@ const ProductCard = (props) => {
   return (
     <div className="card">
       <img src={product.image} alt="..." />
-      <div className="card-body">
-        <h3>{product.name}</h3>
-        <h5>{product.price} $</h5>
-        <NavLink to={`/detail/${product.id}`} className={"btn btn-dark"}>
+      <div className="card-body text-center">
+        <h5>{product.name}</h5>
+        <h4>{product.price} $</h4>
+        <button className="rounded-5 bg-dark"><NavLink to={`/detail/${product.id}`} className={'text-decoration-none text-white'}>
           View Detail
-        </NavLink>
+        </NavLink></button>
         <ButtonBuyProduct product={product} />
       </div>
     </div>

@@ -17,7 +17,7 @@ const CarouselHome = () => {
                <div className="d-flex flex-column info">
                  <h3 className="text-center">{item.name}</h3>
                  <p>{item.description}</p>
-                 <h3 className="text-center bg-secondary text-white">{item.price} $</h3>
+                 <h3 className="text-center bg-secondary text-white rounded-5">{item.price} $</h3>
                  <div className='d-flex justify-content-end'>  
                  <ButtonBuyProduct product={item}/>
                  </div>

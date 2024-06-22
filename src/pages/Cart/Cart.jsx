@@ -10,6 +10,7 @@ import {
 
 } from "../../redux/reducers/cartReducer";
 import _ from 'lodash'
+import { storageData } from "../../util/storageData";
 
 const Cart = () => {
   const { products } = useSelector((state) => state.cartReducer);
@@ -60,6 +61,8 @@ const Cart = () => {
       const filteredProducts = _.difference(data, productSelected);
       const actionSetCartAfterBuy = setCartAfterBuy(filteredProducts);
       dispatch(actionSetCartAfterBuy)
+      storageData.setData("userCart", filteredProducts)
+      window.location.reload();
     }
   };
 
@@ -79,11 +82,11 @@ const Cart = () => {
   };
 
   return (
-    <div>
-      <h1>Giỏ hàng</h1>
-      <hr />
-      <div className="position-relative container">
-        <table className="table mx-5">
+    <div className="container">
+      <p className="p--title mt-2">Giỏ hàng</p>
+      
+      <div className="position-relative">
+        <table className="table">
           <thead className="thead-dark">
             <tr>
               <th scope="col">
@@ -130,7 +133,7 @@ const Cart = () => {
                 <td>{product.price * product.count} $</td>
                 <td>
                   <button
-                    className="btn btn-danger"
+                    className="btn btn-danger rounded-5"
                     onClick={() => handleRemoveProductInCart(product.id)}
                   >
                     Xóa
@@ -144,14 +147,14 @@ const Cart = () => {
         <div>Tổng giá: {totalPrice} $</div>
 
         <button
-          className={`btn border-0 p-2 rounded-2 ${
+          className={`btn border-0 p-2 rounded-5 ${
             productSelected.length === 0 && "disabled"
           }`}
           style={{
             color: "white",
-            background: "orange",
+            background: "#6200EE",
             position: "absolute",
-            right: "10%",
+            right: "0%",
           }}
           onClick={handleOrder}
           disabled={productSelected.length === 0}

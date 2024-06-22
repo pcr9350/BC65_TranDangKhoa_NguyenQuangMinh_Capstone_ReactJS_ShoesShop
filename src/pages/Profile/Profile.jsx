@@ -91,7 +91,7 @@ const Profile = () => {
     
   return (
     <div className='container'>
-      <h3>Profile</h3>
+      <p className='p--title mt-2'>Profile</p>
 
       <div className="row mt-2">
         <div className="col-2">
@@ -100,7 +100,7 @@ const Profile = () => {
 
         {/* Form Update Info  */}
         <form className="col-5" onSubmit={frmUpdateUser.handleSubmit}>
-          <h4 className='text-primary'>Info of {userProfile.name}</h4>
+          <p className='p--title fs-5'>Info of {userProfile.name}</p>
         <div className='form-group'>
           <label>Email:</label>
           <input className='form-control mt-2' name="email" value={frmUpdateUser.values.email} onChange={frmUpdateUser.handleChange} onBlur={frmUpdateUser.handleBlur}/>
@@ -120,22 +120,22 @@ const Profile = () => {
           <label className='me-2 mt-2'>Gender:</label>
           <div>
             <label htmlFor="male">Male</label>
-            <input id="male" value={true} type='radio' className='form-check-input mx-2' name="gender" checked={frmUpdateUser.values.gender === true} onChange={frmUpdateUser.handleChange} onBlur={frmUpdateUser.handleBlur}/>
+            <input id="male" value={true} type='radio' className='form-check-input mx-2' name="gender"  onChange={frmUpdateUser.handleChange} onBlur={frmUpdateUser.handleBlur}/>
           
             <label htmlFor="female">Female</label>
-            <input id='female' value={false} type='radio' className='form-check-input mx-2' name="gender" checked={frmUpdateUser.values.gender === false} onChange={frmUpdateUser.handleChange} onBlur={frmUpdateUser.handleBlur}/>
+            <input id='female' value={false} type='radio' className='form-check-input mx-2' name="gender" onChange={frmUpdateUser.handleChange} onBlur={frmUpdateUser.handleBlur}/>
             </div>
           {frmUpdateUser.errors.gender && <div className="text-danger">{frmUpdateUser.errors.gender}</div>}
           </div>
           
         <div className='form-group'>
-            <button className='btn btn-primary mt-3' type="submit" disabled={!frmUpdateUser.isValid} >Update Info</button>
+            <button className='rounded-5 mt-3' type="submit" disabled={!frmUpdateUser.isValid} >Update Info</button>
           </div>
         </form>
 
         {/* Form Update Password  */}
         <form className="col-5" onSubmit={frmUpdatePasswordUser.handleSubmit}>
-        <h4 className='text-danger'>Change Password of {userProfile.name} </h4>
+        <p className='p--title fs-5'>Change Password of {userProfile.name} </p>
         <div className='form-group'>
           <label>New Password:</label>
           <input className='form-control mt-2' type='password' name="newPassword" onChange={frmUpdatePasswordUser.handleChange} onBlur={frmUpdatePasswordUser.handleBlur}/>
@@ -147,14 +147,14 @@ const Profile = () => {
           {frmUpdatePasswordUser.errors.newPasswordConfirm && <div className="text-danger">{frmUpdatePasswordUser.errors.newPasswordConfirm}</div>}
         </div>
         <div className='form-group'>
-            <button className='btn btn-danger mt-3' type="submit" disabled={!frmUpdatePasswordUser.isValid} >Change Password</button>
+            <button className='btn btn-danger mt-3 rounded-5' style={{width:160}} type="submit" disabled={!frmUpdatePasswordUser.isValid} >Change Password</button>
           </div>
           
         
         </form>
       </div>
     <hr />
-      <h3>Order History</h3>
+      <p className='p--title'>Order History</p>
       {userProfile.ordersHistory?.map((item, index) => {
         return <div key={index}>
           
@@ -167,7 +167,7 @@ const Profile = () => {
                 <th className='col-2' scope="col">Price</th>
                 <th className='col-2' scope="col">Quantity</th>
                 <th className='col-2' scope="col">Total</th>
-                <th className='col-2' scope="col"><button className='btn btn-danger' onClick={()=>{
+                <th className='col-2' scope="col"><button className='btn btn-danger rounded-5' style={{width: 130}} onClick={()=>{
                   if(confirm("Bạn có chắc chắn muốn xóa đơn hàng này không ?")) {
                     const actionDeleteOrder = deleteOrderActionAsync(item.id);
                     dispatch(actionDeleteOrder);

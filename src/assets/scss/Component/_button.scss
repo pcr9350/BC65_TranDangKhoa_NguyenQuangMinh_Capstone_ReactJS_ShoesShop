@@ -1,0 +1,18 @@
+button {
+    &:hover {
+        animation: ani9 0.4s ease-in-out infinite alternate;
+    }
+    background-color: $color-purple;
+    width: 120px;
+    height: 40px;
+    color: $color-white-0;
+    border: 0;
+}
+@keyframes ani9 {
+    0% {
+        transform: translateY(3px);
+    }
+    100% {
+        transform: translateY(5px);
+    }
+}
