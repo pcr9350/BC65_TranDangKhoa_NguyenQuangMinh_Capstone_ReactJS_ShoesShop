@@ -42,14 +42,14 @@ const HeaderHome = () => {
             {userLogin.email}{" "}
           </NavLink>
             <NavLink className="text-decoration-none text-white btn btn-danger rounded-5"
-            style={{width: 120}} to="/home"
+            style={{width: 120}} to="/"
             onClick={()=>{
               
               localStorage.removeItem(ACCESS_TOKEN);
               localStorage.removeItem(USER_LOGIN);
               localStorage.removeItem("userCart")
               toast.success('Bạn đã đăng xuất')
-              window.location.href('/home')
+              window.location.reload();
               
             }}>Logout</NavLink>
           {/* <button
