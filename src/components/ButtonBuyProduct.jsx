@@ -9,7 +9,7 @@ const ButtonBuyProduct = (props) => {
     const product = {...props.product, count:1};
     const dispatch = useDispatch();
   return (
-    <button className='rounded-5 border-0 text-white mx-2' style={{width: 90}} onClick={()=> {
+    <button className='rounded-5 border-0 text-white mx-2 mt-2' style={{width: 90}} onClick={()=> {
         const checkLogin = localStorage.getItem(ACCESS_TOKEN);
         if (checkLogin) {
         const actionBuyAsync = addProductToCart(product)

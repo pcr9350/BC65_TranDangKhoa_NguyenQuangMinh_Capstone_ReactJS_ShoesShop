@@ -90,9 +90,9 @@ const Search = () => {
 
       
 
-      <div className="row mx-auto mt-4">
+      <div className="row mt-4">
         {dataResearch?.map((product) => (
-          <div className="col-lg-3 col-md-4 col-sm-6 mb-4" key={product.id}>
+          <div className="col-lg-3 col-md-4 col-sm-6 mb-2" key={product.id}>
             <ProductCard product={product} />
           </div>
         ))}

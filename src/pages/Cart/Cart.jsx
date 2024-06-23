@@ -90,27 +90,27 @@ const Cart = () => {
       <div className="position-relative">
         <table className="table">
           <thead className="thead-dark">
-            <tr>
-              <th scope="col">
+            <tr className="row">
+              <th scope="col" className="col-sm-1 ">
                 <input
                   type="checkbox"
                   checked={productSelected.length === data.length}
                   onChange={handleSelectAll}
                 />
               </th>
-              <th scope="col">ID</th>
-              <th scope="col">Hình ảnh</th>
-              <th scope="col">Tên sản phẩm</th>
-              <th scope="col">Giá</th>
-              <th scope="col">Số lượng</th>
-              <th scope="col">Tổng</th>
-              <th scope="col">Hành động</th>
+              <th scope="col" className="col-sm-1 ">ID</th>
+              <th scope="col" className="col-sm-1 ">Hình ảnh</th>
+              <th scope="col" className="col-sm-2 ">Tên sản phẩm</th>
+              <th scope="col" className="col-sm-1 ">Giá</th>
+              <th scope="col" className="col-sm-3 ">Số lượng</th>
+              <th scope="col" className="col-sm-1 ">Tổng</th>
+              <th scope="col" className="col-sm-2">Hành động</th>
             </tr>
           </thead>
           <tbody>
             {data.map((product) => (
-              <tr key={product.id}>
-                <th>
+              <tr key={product.id} className="row">
+                <th className="col-sm-1">
                   <input
                     type="checkbox"
                     onChange={() => handleCheck(product)}
@@ -119,23 +119,24 @@ const Cart = () => {
                     )}
                   />
                 </th>
-                <td>{product.id}</td>
-                <td>
+                <td className="col-sm-1">{product.id}</td>
+                <td className="col-sm-1">
                   <img src={product.image} width={50} alt={product.name} />
                 </td>
-                <td>{product.name}</td>
-                <td>{product.price} $</td>
-                <td>
+                <td className="col-sm-2">{product.name}</td>
+                <td className="col-sm-1">{product.price} $</td>
+                <td className="col-sm-3">
                   <UpDownActions
                     key={product.id}
                     product={product}
                     handleUpDownBtn={(type) => handleUpDownBtn(type, product)}
                   />
                 </td>
-                <td>{product.price * product.count} $</td>
-                <td>
+                <td className="col-sm-1">{product.price * product.count} $</td>
+                <td className="col-sm-2">
                   <button
                     className="btn btn-danger rounded-5"
+                    style={{width: 70}}
                     onClick={() => handleRemoveProductInCart(product.id)}
                   >
                     Xóa

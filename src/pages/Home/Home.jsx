@@ -13,7 +13,7 @@ const Home = () => {
       <div className="row">
         {data.map((item, index) => {
           return (
-            <div className="col-3 mt-2" key={index}>
+            <div className="col-lg-3 col-md-4 col-sm-6 mt-2" key={index}>
               <ProductCard product={item} />
             </div>
           );

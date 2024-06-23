@@ -1,3 +1,5 @@
+import ButtonBuyProduct from '../../components/ButtonBuyProduct';
+import CarouselHome from '../../components/Carousel';
 import useDataHome from './useDataHome'
 import { NavLink } from 'react-router-dom';
 
@@ -5,6 +7,7 @@ const HomeMobile = () => {
   const {data} = useDataHome();
   return (
     <div className='container'>
+        <CarouselHome />
             <h3>Shoes Shop</h3>
             {data?.map((prod,index)=>{
                 return <div className='d-flex mt-2' key={index}>
@@ -14,8 +17,9 @@ const HomeMobile = () => {
                             <h3>{prod.name}</h3>
                             <p>{prod.shortDescription}</p>
                         </div>
-                        <div className='text-end'>
+                        <div className='text-end d-flex'>
                             <NavLink to={`/detail/${prod.id}`} className={'btn btn-dark'}>View detail</NavLink>
+                            <ButtonBuyProduct product={prod}/>
                         </div>
                     </div>
                 </div>

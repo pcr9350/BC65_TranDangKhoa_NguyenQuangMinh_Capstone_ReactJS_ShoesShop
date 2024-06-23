@@ -6,7 +6,7 @@ const BottomTabMobile = () => {
         <div 
         className='bg-primary text-white d-flex flex-column justify-content-center'
         style={{
-            position:'fixed',
+            position:'relative',
             zIndex:10,
             width:'100%',
             height:'50px',

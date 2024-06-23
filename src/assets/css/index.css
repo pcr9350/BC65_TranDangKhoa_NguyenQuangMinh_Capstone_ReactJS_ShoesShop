@@ -29,4 +29,9 @@ button:hover {
   100% {
     transform: translateY(5px);
   }
+}
+.carousel-div {
+  background-image: url("/images/carousel.jpg");
+  background-size: cover; /* Cover the entire div with the image */
+  color: #f2f3f5;
 }/*# sourceMappingURL=index.css.map */
