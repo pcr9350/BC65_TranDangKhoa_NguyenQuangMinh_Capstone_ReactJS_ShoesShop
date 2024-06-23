@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 import { httpClient } from "../../util/util";
 
 const initialState = {

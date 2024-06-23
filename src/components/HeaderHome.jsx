@@ -2,14 +2,12 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import { ACCESS_TOKEN, USER_LOGIN } from "../util/util";
-import { routeLink } from "../App";
-import { BiSearch, BiSearchAlt } from "react-icons/bi";
+import { BiSearch } from "react-icons/bi";
 import toast from "react-hot-toast";
 
 const HeaderHome = () => {
-
   const { userLogin } = useSelector((state) => state.userReducer);
-  const { products } = useSelector((state) => state.cartReducer)
+  const { products } = useSelector((state) => state.cartReducer);
   let totalquantity = products.reduce((total, item) => total + item.count, 0);
   const renderLogin = () => {
     if (userLogin) {
@@ -35,41 +33,29 @@ const HeaderHome = () => {
             ({totalquantity})<i className="fa fa-shopping-cart"></i>
           </NavLink>
           <h6 className="text-white my-auto">Hello </h6>
-          <NavLink
-            className="text-white my-sm-0"
-            to="/profile"
-          >
+          <NavLink className="text-white my-sm-0" to="/profile">
             {userLogin.email}{" "}
           </NavLink>
-            <NavLink className="text-decoration-none text-white btn btn-danger rounded-5"
-            style={{width: 120}} to="/"
-            onClick={()=>{
-              window.location.replace('/')
-              localStorage.removeItem(ACCESS_TOKEN);
-              localStorage.removeItem(USER_LOGIN);
-              localStorage.removeItem("userCart")
-              toast.success('Bạn đã đăng xuất')
-              
-              
-            }}>Logout</NavLink>
-          {/* <button
-            className="btn btn-danger rounded-5 my-sm-0"
+          <NavLink
+            className="text-decoration-none text-white btn btn-danger rounded-5"
+            style={{ width: 120 }}
+            to="/"
             onClick={() => {
+              window.location.replace("/");
               localStorage.removeItem(ACCESS_TOKEN);
               localStorage.removeItem(USER_LOGIN);
-              localStorage.removeItem("userCart")
-              window.location.reload();
-              routeLink.replace('/home');
+              localStorage.removeItem("userCart");
+              toast.success("Bạn đã đăng xuất");
             }}
           >
             Logout
-          </button> */}
+          </NavLink>
         </div>
       );
     } else {
       return (
         <>
-        <Link
+          <Link
             to={"/search"}
             className="d-flex flex-row align-items-center gap-1"
             style={{
@@ -82,19 +68,13 @@ const HeaderHome = () => {
             <BiSearch size={30} color="white" />
             <h4 className="text-white">Search</h4>
           </Link>
-          {/* <button className="btn btn-primary rounded-5 pt-2 m-2 my-sm-0" onClick={()=>{
-          }}>Login
-          </button> */}
-
           <NavLink
             className="text-decoration-none text-white btn btn-primary rounded-5 mx-2"
-            style={{width: 120}}
+            style={{ width: 120 }}
             to="/login"
           >
             Login
           </NavLink>
-          
-          
         </>
       );
     }
@@ -132,9 +112,7 @@ const HeaderHome = () => {
             </NavLink>
           </li>
         </ul>
-        <form className="d-flex my-2 my-lg-0">
-          {renderLogin()}
-        </form>
+        <form className="d-flex my-2 my-lg-0">{renderLogin()}</form>
       </div>
     </nav>
   );

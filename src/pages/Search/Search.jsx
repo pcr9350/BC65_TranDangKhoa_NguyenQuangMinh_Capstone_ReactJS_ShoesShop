@@ -45,32 +45,31 @@ const Search = () => {
 
   return (
     <div className="container">
-      
-        <p className="p--title mt-2">Search</p>
-        <h5 className="mt-2">Name</h5>
-        <input
-            placeholder="product name..."
-            style={{ width: 300, background: "#ddd" }}
-            className="rounded-1 form-control"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-        />
-                  
+      <p className="p--title mt-2">Search</p>
+      <h5 className="mt-2">Name</h5>
+      <input
+        placeholder="product name..."
+        style={{ width: 300, background: "#ddd" }}
+        className="rounded-1 form-control"
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+      />
+
       <div className="mt-2">
         <h5>Price</h5>
         <div className="d-flex">
-        <select
-          name=""
-          id=""
-          className="border-0 p-2 form-control"
-          style={{ background: "#ddd", width: 300 }}
-          onChange={(e) => setCategory(e.target.value)}
-          value={category}
-        >
-          <option value="decrease">decrease</option>
-          <option value="ascending">ascending</option>
-        </select>
-        <button
+          <select
+            name=""
+            id=""
+            className="border-0 p-2 form-control"
+            style={{ background: "#ddd", width: 300 }}
+            onChange={(e) => setCategory(e.target.value)}
+            value={category}
+          >
+            <option value="decrease">decrease</option>
+            <option value="ascending">ascending</option>
+          </select>
+          <button
             style={{ width: 100, height: 40 }}
             className="rounded-5 mx-2"
             onClick={handleSearch}
@@ -78,17 +77,11 @@ const Search = () => {
             Search
           </button>
         </div>
-        
       </div>
 
       <div>
-        <p className="w-100 rounded-2 mt-4 p--title"
-        >
-        Search result
-        </p>
+        <p className="w-100 rounded-2 mt-4 p--title">Search result</p>
       </div>
-
-      
 
       <div className="row mt-4">
         {dataResearch?.map((product) => (

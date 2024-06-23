@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 
 const initialState = {
   products: JSON.parse(localStorage.getItem("userCart")) || [],
-  
+
 };
 
 export const cartSlice = createSlice({
@@ -106,12 +106,12 @@ export const addOrderActionAsync = createAsyncThunk(
   "cartReducer/addOrderActionAsync",
   async (orderSubmit, { dispatch }) => {
     try {
-      const res = await httpClient.post("/api/Users/order", orderSubmit); 
+      const res = await httpClient.post("/api/Users/order", orderSubmit);
       return res.data.content; //return về giá trị nào thì ta sẽ nhận được giá trị đó tại fullfill của extrareducer
     } catch (err) {
       return Promise.reject(err);
     } finally {
-      
+
       return "finally"; //return về giá trị nào thì ta sẽ nhận được giá trị đó tại fullfill của extraReducer
     }
   }
@@ -122,12 +122,12 @@ export const deleteOrderActionAsync = createAsyncThunk(
   "cartReducer/deleteOrderActionAsync",
   async (idOrder, { dispatch }) => {
     try {
-      const res = await httpClient.post("/api/Users/deleteOrder", {'orderID': idOrder});  
+      const res = await httpClient.post("/api/Users/deleteOrder", { 'orderID': idOrder });
       return res.data.content; //return về giá trị nào thì ta sẽ nhận được giá trị đó tại fullfill của extrareducer
     } catch (err) {
       return Promise.reject(err);
     } finally {
-      
+
       return "finally"; //return về giá trị nào thì ta sẽ nhận được giá trị đó tại fullfill của extraReducer
     }
   }

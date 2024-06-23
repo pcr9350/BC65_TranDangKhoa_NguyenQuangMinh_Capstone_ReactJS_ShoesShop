@@ -32,13 +32,12 @@ const Detail = () => {
   const handleAddToCart = () => {
     if (currentProduct.count === 0) return;
     if (userLogin) {
-    dispatch(addProductToCart(currentProduct));
-    toast.success("Add to cart successfully!");
+      dispatch(addProductToCart(currentProduct));
+      toast.success("Add to cart successfully!");
 
-    // reset count in product
-    setCurrentProduct({ ...currentProduct, count: 0 });
+      // reset count in product
+      setCurrentProduct({ ...currentProduct, count: 0 });
     } else toast.error("Vui lòng đăng nhập để mua hàng");
-    
   };
 
   const handleUpDownBtn = (type) => {
@@ -74,8 +73,10 @@ const Detail = () => {
               handleUpDownBtn={handleUpDownBtn}
             />
             <button
-              className={`btn rounded-5 ${!currentProduct?.count && "disabled"}`}
-              style={{ width: 130, backgroundColor: '#6200EE', color: 'white'}}
+              className={`btn rounded-5 ${
+                !currentProduct?.count && "disabled"
+              }`}
+              style={{ width: 130, backgroundColor: "#6200EE", color: "white" }}
               onClick={handleAddToCart}
             >
               Add to cart
