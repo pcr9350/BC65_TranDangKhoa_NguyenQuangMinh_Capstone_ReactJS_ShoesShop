@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import ProductCard from "../../components/ProductCard";
 import useDataHome from "./useDataHome";
 import CarouselHome from "../../components/Carousel";
 
 const Home = () => {
   const { data } = useDataHome();
-  
+
   return (
     <div className="container">
       <CarouselHome />
@@ -24,7 +24,3 @@ const Home = () => {
 };
 
 export default Home;
-
-
-
-

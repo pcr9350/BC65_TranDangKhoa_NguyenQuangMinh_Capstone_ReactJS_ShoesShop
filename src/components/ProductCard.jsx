@@ -9,9 +9,14 @@ const ProductCard = (props) => {
       <div className="card-body text-center">
         <h5>{product.name}</h5>
         <h4>{product.price} $</h4>
-        <button className="rounded-5 bg-dark"><NavLink to={`/detail/${product.id}`} className={'text-decoration-none text-white'}>
-          View Detail
-        </NavLink></button>
+        <button className="rounded-5 bg-dark">
+          <NavLink
+            to={`/detail/${product.id}`}
+            className={"text-decoration-none text-white"}
+          >
+            View Detail
+          </NavLink>
+        </button>
         <ButtonBuyProduct product={product} />
       </div>
     </div>

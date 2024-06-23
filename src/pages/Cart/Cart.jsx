@@ -7,9 +7,8 @@ import {
   cartUp,
   removeProductToCard,
   setCartAfterBuy,
-
 } from "../../redux/reducers/cartReducer";
-import _ from 'lodash'
+import _ from "lodash";
 import { storageData } from "../../util/storageData";
 
 const Cart = () => {
@@ -17,7 +16,7 @@ const Cart = () => {
   const { userLogin } = useSelector((state) => state.userReducer);
   const dispatch = useDispatch();
   const [productSelected, setProductSelected] = useState([]);
-  let data = _.orderBy(products,['id']);
+  let data = _.orderBy(products, ["id"]);
   // Xử lý việc xóa sản phẩm khỏi giỏ hàng với xác nhận
   const handleRemoveProductInCart = (id) => {
     if (window.confirm("Bạn có chắc chắn muốn xóa sản phẩm này không?"))
@@ -51,23 +50,20 @@ const Cart = () => {
     const orderSubmit = {
       orderDetail: productSelected.map((product) => ({
         productId: product.id,
-        quantity: product.count
+        quantity: product.count,
       })),
-      email: emailOrder
+      email: emailOrder,
     };
     if (window.confirm("Bạn vui lòng xác nhận đơn hàng muốn mua ?")) {
       const actionOrder = addOrderActionAsync(orderSubmit);
       dispatch(actionOrder);
       const filteredProducts = _.difference(data, productSelected);
       const actionSetCartAfterBuy = setCartAfterBuy(filteredProducts);
-      dispatch(actionSetCartAfterBuy)
-      storageData.setData("userCart", filteredProducts)
-      
-    } else return
+      dispatch(actionSetCartAfterBuy);
+      storageData.setData("userCart", filteredProducts);
+    } else return;
   };
-  useEffect(()=>{
-    
-  }, [storageData])
+  useEffect(() => {}, [storageData]);
   // Tính toán tổng giá của các sản phẩm được chọn
   const totalPrice = useMemo(() => {
     return productSelected.reduce(
@@ -86,7 +82,7 @@ const Cart = () => {
   return (
     <div className="container">
       <p className="p--title mt-2">Giỏ hàng</p>
-      
+
       <div className="position-relative">
         <table className="table">
           <thead className="thead-dark">
@@ -98,13 +94,27 @@ const Cart = () => {
                   onChange={handleSelectAll}
                 />
               </th>
-              <th scope="col" className="col-sm-1 ">ID</th>
-              <th scope="col" className="col-sm-1 ">Hình ảnh</th>
-              <th scope="col" className="col-sm-2 ">Tên sản phẩm</th>
-              <th scope="col" className="col-sm-1 ">Giá</th>
-              <th scope="col" className="col-sm-3 ">Số lượng</th>
-              <th scope="col" className="col-sm-1 ">Tổng</th>
-              <th scope="col" className="col-sm-2">Hành động</th>
+              <th scope="col" className="col-sm-1 ">
+                ID
+              </th>
+              <th scope="col" className="col-sm-1 ">
+                Hình ảnh
+              </th>
+              <th scope="col" className="col-sm-2 ">
+                Tên sản phẩm
+              </th>
+              <th scope="col" className="col-sm-1 ">
+                Giá
+              </th>
+              <th scope="col" className="col-sm-3 ">
+                Số lượng
+              </th>
+              <th scope="col" className="col-sm-1 ">
+                Tổng
+              </th>
+              <th scope="col" className="col-sm-2">
+                Hành động
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -136,7 +146,7 @@ const Cart = () => {
                 <td className="col-sm-2">
                   <button
                     className="btn btn-danger rounded-5"
-                    style={{width: 70}}
+                    style={{ width: 70 }}
                     onClick={() => handleRemoveProductInCart(product.id)}
                   >
                     Xóa

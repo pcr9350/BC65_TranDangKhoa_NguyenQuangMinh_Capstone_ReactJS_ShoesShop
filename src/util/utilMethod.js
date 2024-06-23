@@ -13,7 +13,7 @@ const getDataJsonStorage = (storeName) => {
     return null;
 }
 
-const setDataTextStorage = (storeName, data)=> {
+const setDataTextStorage = (storeName, data) => {
     localStorage.setItem(storeName, data);
 }
 
@@ -43,7 +43,7 @@ function getCookie(name) {
     return null;
 }
 
-function delCookie(name) {   
+function delCookie(name) {
     document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
 

@@ -26,7 +26,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
 import UserTemplate from "./template/UserTemplate";
 
-export const routeLink = createBrowserHistory({ basename: '/' });
+export const routeLink = createBrowserHistory({ basename: "/" });
 
 const queryClient = new QueryClient();
 function App() {
