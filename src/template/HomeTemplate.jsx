@@ -8,24 +8,24 @@ import { FaInfoCircle } from 'react-icons/fa';
 
 const footerDesktop = (
 
-  <footer className='bg-dark text-white text-center p-3' style={{ padding: '1rem', backgroundColor: '#343a40', color: '#fff', textAlign: 'center' }}>
-    <div className="d-flex justify-content-between w-100" style={{ display: 'flex', justifyContent: 'space-between', width: '100%', flexWrap: 'wrap' }}>
-      <div className="col-4" style={{ flex: 1, minWidth: '200px', textAlign: 'left' }}>
-        <h3>SHOES SHOP</h3>
+  <footer className='bg-dark text-white text-center p-3 mt-2' style={{ padding: '1rem', backgroundColor: '#343a40', color: '#fff', textAlign: 'center' }}>
+    <div className="row justify-content-between w-100" style={{ justifyContent: 'space-between', width: '100%', flexWrap: 'wrap' }}>
+      <div className="col-3" style={{textAlign: 'left' }}>
+        <h4>SHOES SHOP</h4>
         <NavLink to={'/'} className="text-white mx-2 fs-5 text-decoration-none d-block" style={{ color: '#fff', margin: '0.5rem 0', fontSize: '1.25rem', textDecoration: 'none' }}>Home</NavLink>
         <NavLink to={'/Search'} className="text-white mx-2 fs-5 text-decoration-none d-block" style={{ color: '#fff', margin: '0.5rem 0', fontSize: '1.25rem', textDecoration: 'none' }}>Search</NavLink>
       </div>
-      <div className="col-4" style={{ flex: 1, minWidth: '200px', textAlign: 'left' }}>
-        <h3>SUPPORT</h3>
+      <div className="col-3" style={{textAlign: 'left' }}>
+        <h4>SUPPORT</h4>
         <NavLink to={'/profile'} className="text-white mx-2 fs-5 text-decoration-none d-block" style={{ color: '#fff', margin: '0.5rem 0', fontSize: '1.25rem', textDecoration: 'none' }}>Profile</NavLink>
         <NavLink to={'/cart'} className="text-white mx-2 fs-5 text-decoration-none d-block" style={{ color: '#fff', margin: '0.5rem 0', fontSize: '1.25rem', textDecoration: 'none' }}>Cart</NavLink>
       </div>
-      <div className="col-4" style={{ flex: 1, minWidth: '200px', textAlign: 'left' }}>
-        <h3>REGISTER</h3>
+      <div className="col-3" style={{textAlign: 'left' }}>
+        <h4>REGISTER</h4>
         <NavLink to={'/register'} className="text-white mx-2 fs-5 text-decoration-none d-block" style={{ color: '#fff', margin: '0.5rem 0', fontSize: '1.25rem', textDecoration: 'none' }}>Register</NavLink>
         <NavLink to={'/login'} className="text-white mx-2 fs-5 text-decoration-none d-block" style={{ color: '#fff', margin: '0.5rem 0', fontSize: '1.25rem', textDecoration: 'none' }}>Login</NavLink>
       </div>
-      <div className="footer__members" style={{ flex: 1, minWidth: '200px', textAlign: 'left' }}>
+      <div className="footer__members col-3" style={{textAlign: 'left' }}>
         <h4 className="normal-case text-sm pb-1 pt-2" style={{ paddingBottom: '0.5rem', paddingTop: '0.5rem' }}>Triển khai dự án:</h4>
         <ul className="capitalize text-xs" style={{ textTransform: 'capitalize', fontSize: '0.75rem' }}>
           <li className="leading-5 flex items-center tracking-wide" style={{ lineHeight: '1.25rem', display: 'flex', alignItems: 'center', letterSpacing: '0.05em' }}>

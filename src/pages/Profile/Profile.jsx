@@ -98,12 +98,12 @@ const Profile = () => {
       <p className='p--title mt-2'>Profile</p>
 
       <div className="row mt-2">
-        <div className="col-2">
+        <div className="col-lg-2 col-sm-12">
         <img src={userProfile?.avatar} className='rounded rounded-circle' width={150} height={150}  alt="avatar" />
         </div>
 
         {/* Form Update Info  */}
-        <form action='' className="col-5" onSubmit={frmUpdateUser.handleSubmit}>
+        <form action='' className="col-lg-5 col-sm-6" onSubmit={frmUpdateUser.handleSubmit}>
           <p className='p--title fs-5'>Info of {userProfile.name}</p>
         <div className='form-group'>
           <label htmlFor='email'>Email:</label>
@@ -138,7 +138,7 @@ const Profile = () => {
         </form>
 
         {/* Form Update Password  */}
-        <form className="col-5" onSubmit={frmUpdatePasswordUser.handleSubmit}>
+        <form className="col-lg-5 col-sm-6" onSubmit={frmUpdatePasswordUser.handleSubmit}>
         <p className='p--title fs-5'>Change Password of {userProfile.name} </p>
         <div className='form-group'>
           <label>New Password:</label>
@@ -171,12 +171,12 @@ const Profile = () => {
                 <th className='col-2' scope="col">Price</th>
                 <th className='col-2' scope="col">Quantity</th>
                 <th className='col-2' scope="col">Total</th>
-                <th className='col-2' scope="col"><button className='btn btn-danger rounded-5' style={{width: 130}} onClick={()=>{
+                <th className='col-2' scope="col"><button className='btn btn-danger rounded-5' style={{width: 70}} onClick={()=>{
                   if(confirm("Bạn có chắc chắn muốn xóa đơn hàng này không ?")) {
                     const actionDeleteOrder = deleteOrderActionAsync(item.id);
                     dispatch(actionDeleteOrder);
                   }
-                }}>Xóa đơn hàng</button></th>
+                }}>Xóa</button></th>
               </tr>
             </thead>
             <tbody>
