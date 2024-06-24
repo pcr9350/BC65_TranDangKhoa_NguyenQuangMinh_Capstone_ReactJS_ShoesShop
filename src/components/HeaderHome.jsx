@@ -33,7 +33,6 @@ const HeaderHome = () => {
           >
             <i className="fa fa-shopping-cart position-relative fs-4"><span className="position-absolute top-0 badge rounded-pill translate-middle bg-danger fs-6"><small>{totalquantity}</small></span></i>
           </NavLink>
-          
           <NavLink className="text-white my-sm-0 text-decoration-none btn btn-outline-info border-0 rounded-pill" to="/profile">
             {userLogin.email}{" "}
           </NavLink>
@@ -68,7 +67,6 @@ const HeaderHome = () => {
           >
             <BiSearch size={25} color="white" />
             <h4 className="text-white">Search</h4>
-
           </Link>
           <NavLink
             className="text-decoration-none text-white btn btn-primary rounded-5 mx-2"
