@@ -17,7 +17,7 @@ const HeaderHome = () => {
             to={"/search"}
             className="d-flex flex-row align-items-center gap-1"
             style={{
-              marginRight: 10,
+              marginRight: 2,
               background: "none",
               border: 0,
               textDecoration: "none",
@@ -25,20 +25,20 @@ const HeaderHome = () => {
           >
             <BiSearch size={25} color="white" />
             <h4 className="text-white">Search</h4>
+
           </Link>
           <NavLink
-            className="text-white mx-2 fs-4 text-decoration-none"
+            className="text-white mx-2 text-decoration-none"
             to="/cart"
           >
-            ({totalquantity})<i className="fa fa-shopping-cart"></i>
+            <i className="fa fa-shopping-cart position-relative fs-4"><span className="position-absolute top-0 badge rounded-pill translate-middle bg-danger fs-6"><small>{totalquantity}</small></span></i>
           </NavLink>
-          <h6 className="text-white my-auto">Hello </h6>
-          <NavLink className="text-white my-sm-0" to="/profile">
+          <NavLink className="text-white my-sm-0 text-decoration-none btn btn-outline-info border-0 rounded-pill" to="/profile">
             {userLogin.email}{" "}
           </NavLink>
           <NavLink
             className="text-decoration-none text-white btn btn-danger rounded-5"
-            style={{ width: 120 }}
+            style={{ width: 75 }}
             to="/"
             onClick={() => {
               window.location.replace("/");
@@ -59,18 +59,18 @@ const HeaderHome = () => {
             to={"/search"}
             className="d-flex flex-row align-items-center gap-1"
             style={{
-              marginRight: 10,
+              marginRight: 2,
               background: "none",
               border: 0,
               textDecoration: "none",
             }}
           >
-            <BiSearch size={30} color="white" />
+            <BiSearch size={25} color="white" />
             <h4 className="text-white">Search</h4>
           </Link>
           <NavLink
             className="text-decoration-none text-white btn btn-primary rounded-5 mx-2"
-            style={{ width: 120 }}
+            style={{ width: 75 }}
             to="/login"
           >
             Login
@@ -80,19 +80,19 @@ const HeaderHome = () => {
     }
   };
   return (
-    <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-md navbar-dark bg-dark">
       <NavLink className="navbar-brand" to="/">
         Shoes Shop
       </NavLink>
       <button
-        className="navbar-toggler d-lg-none"
+        className="d-md-none border-0 rounded-5 bg-dark"
         type="button"
         data-bs-toggle="collapse"
         data-bs-target="#collapsibleNavId"
         aria-controls="collapsibleNavId"
         aria-expanded="false"
         aria-label="Toggle navigation"
-      />
+      >Menu</button>
       <div className="collapse navbar-collapse" id="collapsibleNavId">
         <ul className="navbar-nav me-auto mt-2 mt-lg-0">
           <li className="nav-item">

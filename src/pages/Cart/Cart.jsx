@@ -133,7 +133,7 @@ const Cart = () => {
                 <td className="col-sm-1">
                   <img src={product.image} width={50} alt={product.name} />
                 </td>
-                <td className="col-sm-2">{product.name}</td>
+                <td className="col-sm-2 d-xs-none">{product.name}</td>
                 <td className="col-sm-1">{product.price} $</td>
                 <td className="col-sm-3">
                   <UpDownActions
