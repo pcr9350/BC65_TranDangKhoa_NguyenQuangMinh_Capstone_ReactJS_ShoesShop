@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import { ACCESS_TOKEN, USER_LOGIN } from "../util/util";
@@ -81,8 +81,29 @@ const HeaderHome = () => {
       );
     }
   };
+
+  // set fixed-top nav-bar
+  const [isFixed, setIsFixed] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleScroll = () => {
+    if (window.scrollY > 50) {
+      setIsFixed(true);
+    } else {
+      setIsFixed(false);
+    }
+  };
+
   return (
-    <nav className="navbar navbar-expand-md navbar-dark bg-dark">
+    <nav
+      className={`navbar navbar-expand-md navbar-dark bg-dark ${
+        isFixed ? "fixed-top" : ""
+      }`}
+    >
       <NavLink className="navbar-brand" to="/">
         Shoes Shop
       </NavLink>
@@ -94,7 +115,9 @@ const HeaderHome = () => {
         aria-controls="collapsibleNavId"
         aria-expanded="false"
         aria-label="Toggle navigation"
-      >Menu</button>
+      >
+        Menu
+      </button>
       <div className="collapse navbar-collapse" id="collapsibleNavId">
         <ul className="navbar-nav me-auto mt-2 mt-lg-0">
           <li className="nav-item">
