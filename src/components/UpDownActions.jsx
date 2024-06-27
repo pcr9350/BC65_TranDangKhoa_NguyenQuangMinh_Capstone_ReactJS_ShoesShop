@@ -4,24 +4,24 @@ const UpDownActions = ({ product, handleUpDownBtn }) => {
   return (
     <div
       className="d-flex flex-row align-items-center gap-3 justify-content-between"
-      style={{ width: 130 }}
+      style={{ width: '100%' }}
     >
       <button
-        className="border-0 rounded-3"
-        style={{ width: 40, height: 40 }}
+        className="border-0 rounded-5 bg-primary"
+        style={{ width: "40%" }}
         onClick={() => handleUpDownBtn("down")}
       >
         -
       </button>
       <p
-        style={{ fontSize: 20, fontWeight: 600, width: 30 }}
+        style={{ fontSize: "1rem", fontWeight: "400", width: "20%" }}
         className="my-auto mx-auto text-center"
       >
         {product?.count}
       </p>
       <button
-        className="border-0 rounded-3"
-        style={{ width: 40, height: 40 }}
+        className="border-0 rounded-5 bg-primary"
+        style={{ width: "40%" }}
         onClick={() => handleUpDownBtn("up")}
       >
         +

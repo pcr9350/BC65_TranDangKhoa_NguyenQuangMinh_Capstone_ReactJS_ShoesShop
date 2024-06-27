@@ -19,9 +19,15 @@ const HomeMobile = () => {
                 <p>{prod.shortDescription}</p>
               </div>
               <div className="text-end d-flex">
-                <NavLink to={`/detail/${prod.id}`} className={"btn btn-dark"}>
-                  View detail
-                </NavLink>
+                <button className="rounded-5 bg-dark mt-2">
+                  <NavLink
+                    to={`/detail/${prod.id}`}
+                    className={"text-decoration-none text-white"}
+                  >
+                    View Detail
+                  </NavLink>
+                </button>
+
                 <ButtonBuyProduct product={prod} />
               </div>
             </div>
