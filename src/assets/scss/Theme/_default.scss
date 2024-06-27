@@ -5,3 +5,18 @@
     padding-left: $pd-1;
     border-radius: $border-radius-5;
 }
+
+/* Table row height */
+.table tbody tr {
+    height: auto; /* Allow rows to adjust height based on content */
+  }
+  
+  /* UpDownActions height */
+  .up-down-actions {
+    height: 30px; /* Adjust as needed */
+  }
+  
+  /* Bottom tab icon size */
+  .bottom-tab-mobile .nav-link i {
+    font-size: 1.5rem; /* Adjust as needed */
+  }

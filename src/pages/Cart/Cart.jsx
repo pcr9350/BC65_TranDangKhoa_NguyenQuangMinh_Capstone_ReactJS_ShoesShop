@@ -80,47 +80,34 @@ const Cart = () => {
   };
 
   return (
+    
     <div className="container">
       <p className="p--title mt-2">Giỏ hàng</p>
 
-      <div className="position-relative">
+      <div className="table-responsive"> 
         <table className="table">
           <thead className="thead-dark">
-            <tr className="row">
-              <th scope="col" className="col-sm-1 ">
+            <tr>
+              <th style={{ width: "5%" }}>
                 <input
                   type="checkbox"
                   checked={productSelected.length === data.length}
                   onChange={handleSelectAll}
                 />
               </th>
-              <th scope="col" className="col-sm-1 ">
-                ID
-              </th>
-              <th scope="col" className="col-sm-1 ">
-                Hình ảnh
-              </th>
-              <th scope="col" className="col-sm-2 ">
-                Tên sản phẩm
-              </th>
-              <th scope="col" className="col-sm-1 ">
-                Giá
-              </th>
-              <th scope="col" className="col-sm-3 ">
-                Số lượng
-              </th>
-              <th scope="col" className="col-sm-1 ">
-                Tổng
-              </th>
-              <th scope="col" className="col-sm-2">
-                Hành động
-              </th>
+              <th style={{ width: "5%" }}>ID</th>
+              <th style={{ width: "10%" }}>Hình ảnh</th>
+              <th className="d-none d-md-table-cell">Tên sản phẩm</th>
+              <th style={{ width: "15%" }}>Giá</th>
+              <th style={{ width: "20%" }}>Số lượng</th>
+              <th style={{ width: "15%" }}>Tổng</th>
+              <th style={{ width: "15%" }}>Hành động</th>
             </tr>
           </thead>
           <tbody>
             {data.map((product) => (
-              <tr key={product.id} className="row">
-                <th className="col-sm-1">
+              <tr key={product.id} className="align-items-center">
+                <td style={{ width: "5%" }}>
                   <input
                     type="checkbox"
                     onChange={() => handleCheck(product)}
@@ -128,25 +115,25 @@ const Cart = () => {
                       (currentProduct) => currentProduct.id === product.id
                     )}
                   />
-                </th>
-                <td className="col-sm-1">{product.id}</td>
-                <td className="col-sm-1">
+                </td>
+                <td style={{ width: "5%" }}>{product.id}</td>
+                <td style={{ width: "10%" }}>
                   <img src={product.image} width={50} alt={product.name} />
                 </td>
-                <td className="col-sm-2 d-xs-none">{product.name}</td>
-                <td className="col-sm-1">{product.price} $</td>
-                <td className="col-sm-3">
+                <td className="d-none d-md-table-cell">{product.name}</td>
+                <td style={{ width: "15%" }}>{product.price} $</td>
+                <td style={{ width: "20%" }}>
                   <UpDownActions
                     key={product.id}
                     product={product}
                     handleUpDownBtn={(type) => handleUpDownBtn(type, product)}
                   />
                 </td>
-                <td className="col-sm-1">{product.price * product.count} $</td>
-                <td className="col-sm-2">
+                <td style={{ width: "15%" }}>{product.price * product.count} $</td>
+                <td style={{ width: "15%" }}>
                   <button
                     className="btn btn-danger rounded-5"
-                    style={{ width: 70 }}
+                    style={{width:"100%"}}
                     onClick={() => handleRemoveProductInCart(product.id)}
                   >
                     Xóa
@@ -156,24 +143,22 @@ const Cart = () => {
             ))}
           </tbody>
         </table>
+      </div>
 
+      <div className="d-flex justify-content-between align-items-center mt-3">
         <div>Tổng giá: {totalPrice} $</div>
-
-        <button
-          className={`btn border-0 p-2 rounded-5 ${
-            productSelected.length === 0 && "disabled"
-          }`}
-          style={{
-            color: "white",
-            background: "#6200EE",
-            position: "absolute",
-            right: "0%",
-          }}
-          onClick={handleOrder}
-          disabled={productSelected.length === 0}
-        >
-          Đặt hàng
-        </button>
+        <div className="d-flex justify-content-end">
+          <button
+            className={`btn border-0 p-2 rounded-5 ${
+              productSelected.length === 0 && "disabled"
+            }`}
+            style={{ color: "white", background: "#6200EE" }}
+            onClick={handleOrder}
+            disabled={productSelected.length === 0}
+          >
+            Đặt hàng
+          </button>
+        </div>
       </div>
     </div>
   );

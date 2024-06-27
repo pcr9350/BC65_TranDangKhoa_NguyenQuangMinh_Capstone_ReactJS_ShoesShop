@@ -62,21 +62,24 @@ const Detail = () => {
           <p>{productDetail?.description}</p>
           {productDetail?.size.map((size, index) => {
             return (
-              <p className="me-2 btn btn-dark rounded-3" key={index}>
+              <p className="me-2 btn btn-dark rounded-5" key={index}>
                 {size}
               </p>
             );
           })}
           <div className="mt-2 d-flex flex-column align-items-start gap-2">
+            <div className="w-50">
             <UpDownActions
               product={currentProduct}
               handleUpDownBtn={handleUpDownBtn}
             />
+            </div>
+            
             <button
               className={`btn rounded-5 ${
                 !currentProduct?.count && "disabled"
               }`}
-              style={{ width: 130, backgroundColor: "#6200EE", color: "white" }}
+              style={{ backgroundColor: "#6200EE", color: "white" }}
               onClick={handleAddToCart}
             >
               Add to cart

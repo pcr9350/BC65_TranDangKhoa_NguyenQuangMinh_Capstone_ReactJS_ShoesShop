@@ -4,6 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 import { ACCESS_TOKEN, USER_LOGIN } from "../util/util";
 import { BiSearch } from "react-icons/bi";
 import toast from "react-hot-toast";
+import { FaBars } from "react-icons/fa";
 
 const HeaderHome = () => {
   const { userLogin } = useSelector((state) => state.userReducer);
@@ -25,15 +26,18 @@ const HeaderHome = () => {
           >
             <BiSearch size={25} color="white" />
             <h4 className="text-white">Search</h4>
-
           </Link>
-          <NavLink
-            className="text-white mx-2 text-decoration-none"
-            to="/cart"
-          >
-            <i className="fa fa-shopping-cart position-relative fs-4"><span className="position-absolute top-0 badge rounded-pill translate-middle bg-danger fs-6"><small>{totalquantity}</small></span></i>
+          <NavLink className="text-white mx-2 text-decoration-none" to="/cart">
+            <i className="fa fa-shopping-cart position-relative fs-4">
+              <span className="position-absolute top-0 badge rounded-pill translate-middle bg-danger fs-6">
+                <small>{totalquantity}</small>
+              </span>
+            </i>
           </NavLink>
-          <NavLink className="text-white my-sm-0 text-decoration-none btn btn-outline-info border-0 rounded-pill" to="/profile">
+          <NavLink
+            className="text-white my-sm-0 text-decoration-none btn btn-outline-info border-0 rounded-pill"
+            to="/profile"
+          >
             {userLogin.email}{" "}
           </NavLink>
           <NavLink
@@ -82,10 +86,12 @@ const HeaderHome = () => {
 
   // set fixed-top nav-bar
   const [isFixed, setIsFixed] = useState(false);
+  // State for mobile menu visibility
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const handleScroll = () => {
@@ -106,18 +112,17 @@ const HeaderHome = () => {
         Shoes Shop
       </NavLink>
       <button
-        className="d-md-none border-0 rounded-5 bg-dark"
+        className="navbar-toggler"
         type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#collapsibleNavId"
-        aria-controls="collapsibleNavId"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
+        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
       >
-        Menu
+        <FaBars /> {/* Use the bars icon for the toggle */}
       </button>
-      <div className="collapse navbar-collapse" id="collapsibleNavId">
-        <ul className="navbar-nav me-auto mt-2 mt-lg-0">
+      <div
+        className={`collapse navbar-collapse ${isMobileMenuOpen ? "show" : ""}`}
+        id="collapsibleNavId"
+      >
+        <ul className="navbar-nav me-auto mt-2 mt-lg-0 flex-column flex-md-row">
           <li className="nav-item">
             <NavLink className="nav-link" to="/home" aria-current="page">
               Home
@@ -135,7 +140,9 @@ const HeaderHome = () => {
             </NavLink>
           </li>
         </ul>
-        <form className="d-flex my-2 my-lg-0">{renderLogin()}</form>
+        <div className="d-flex justify-content-end">
+          <form className="d-flex my-2 my-lg-0">{renderLogin()}</form>
+        </div>
       </div>
     </nav>
   );
