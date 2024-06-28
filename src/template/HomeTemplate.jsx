@@ -63,7 +63,7 @@ const footerDesktop = (
             textDecoration: "none",
           }}
         >
-          Hố sơ
+          Hồ sơ
         </NavLink>
         <NavLink
           to={"/cart"}
