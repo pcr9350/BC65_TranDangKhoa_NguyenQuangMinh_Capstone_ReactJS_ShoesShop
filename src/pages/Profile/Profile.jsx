@@ -61,13 +61,13 @@ const Profile = () => {
       gender: true,
     },
     validationSchema: yup.object().shape({
-      name: yup.string().required("Name is required"),
+      name: yup.string().required("Tên không được để trống"),
       email: yup
         .string()
-        .email("Invalid email format")
-        .required("Email is required"),
-      phone: yup.string().required("Phone number is required"), // Adjust validation if needed
-      gender: yup.boolean().oneOf([true, false], "Gender is required"),
+        .email("Email không hợp lệ")
+        .required("Email không được để trống"),
+      phone: yup.string().required("Số điện thoại không được để trống"), // Adjust validation if needed
+      gender: yup.boolean().oneOf([true, false], "Giới tính không được để trống"),
     }),
     onSubmit: (values) => {
       console.log(values);
@@ -85,13 +85,13 @@ const Profile = () => {
     validationSchema: yup.object().shape({
       newPassword: yup
         .string()
-        .min(6, "New password must be at least 6 characters")
-        .required("New password is required"),
+        .min(6, "Mật khẩu phải có ít nhứt 6 kí tự")
+        .required("Mật khẩu không được để trống"),
       newPasswordConfirm: yup
         .string()
-        .min(6, "New password confirm must be at least 6 characters")
-        .required("New password confirm is required")
-        .oneOf([yup.ref("newPassword")], "Passwords must match"),
+        .min(6, "Mật khẩu xác nhận phải có ít nhứt 6 kí tự")
+        .required("Mật khẩu xác nhận không được để trống")
+        .oneOf([yup.ref("newPassword")], "Mật khẩu xác nhận không giống"),
     }),
     onSubmit: (values) => {
       // Lấy dữ liệu từ form thành công
@@ -105,7 +105,7 @@ const Profile = () => {
 
   return (
     <div className="container">
-      <p className="p--title mt-2">Profile</p>
+      <p className="p--title mt-2">Hồ sơ</p>
 
       <div className="row mt-2">
         <div className="col-lg-2 col-sm-12">
@@ -124,7 +124,7 @@ const Profile = () => {
           className="col-lg-5 col-sm-6"
           onSubmit={frmUpdateUser.handleSubmit}
         >
-          <p className="p--title fs-5">Info of {userProfile.name}</p>
+          <p className="p--title fs-5 mt-2">Thông tin của {userProfile.name}</p>
           <div className="form-group">
             <label htmlFor="email">Email:</label>
             <input
@@ -140,7 +140,7 @@ const Profile = () => {
             )}
           </div>
           <div className="form-group">
-            <label>Name:</label>
+            <label>Tên:</label>
             <input
               className="form-control mt-2"
               name="name"
@@ -153,7 +153,7 @@ const Profile = () => {
             )}
           </div>
           <div className="form-group">
-            <label>Phone:</label>
+            <label>Số điện thoại:</label>
             <input
               className="form-control mt-2"
               type="text"
@@ -167,9 +167,9 @@ const Profile = () => {
             )}
           </div>
           <div className="form-group">
-            <label className="me-2 mt-2">Gender:</label>
+            <label className="me-2 mt-2">Giới tính:</label>
             <div>
-              <label htmlFor="male">Male</label>
+              <label htmlFor="male">Nam</label>
               <input
                 id="male"
                 value={true}
@@ -180,7 +180,7 @@ const Profile = () => {
                 onBlur={frmUpdateUser.handleBlur}
               />
 
-              <label htmlFor="female">Female</label>
+              <label htmlFor="female">Nữ</label>
               <input
                 id="female"
                 value={false}
@@ -198,25 +198,25 @@ const Profile = () => {
 
           <div className="form-group">
             <button
-              className="rounded-5 mt-3"
+              className="rounded-5 mt-2"
               type="submit"
               disabled={!frmUpdateUser.isValid}
             >
-              Update Info
+              Cập nhật
             </button>
           </div>
         </form>
 
         {/* Form Update Password  */}
         <form
-          className="col-lg-5 col-sm-6"
+          className="col-lg-5 col-sm-6 mt-2"
           onSubmit={frmUpdatePasswordUser.handleSubmit}
         >
           <p className="p--title fs-5">
-            Change Password of {userProfile.name}{" "}
+            Đổi mật khẩu
           </p>
           <div className="form-group">
-            <label>New Password:</label>
+            <label>Mật khẩu mới:</label>
             <input
               className="form-control mt-2"
               type="password"
@@ -231,7 +231,7 @@ const Profile = () => {
             )}
           </div>
           <div className="form-group">
-            <label>New Password Confirm:</label>
+            <label>Xác nhận mật khẩu mới:</label>
             <input
               className="form-control mt-2"
               type="password"
@@ -247,49 +247,49 @@ const Profile = () => {
           </div>
           <div className="form-group">
             <button
-              className="btn btn-danger mt-3 rounded-5"
+              className="btn btn-danger mt-2 rounded-5"
               style={{ width: 160 }}
               type="submit"
               disabled={!frmUpdatePasswordUser.isValid}
             >
-              Change Password
+              Đổi mật khẩu
             </button>
           </div>
         </form>
       </div>
       <hr />
-      <p className="p--title">Order History</p>
+      <p className="p--title">Lịch sử đơn hàng</p>
       {userProfile.ordersHistory?.map((item, index) => {
         return (
           <div key={index}>
             <table className="table table-striped caption-top">
               <caption>
                 <p className="fs-5 text-primary">
-                  Order id: {item.id} have been placed on{" "}
+                  Đơn hàng id: {item.id} được đặt lúc{" "}
                   {moment(item.date).format("DD/MM/yyyy HH:mm:ss")}
                 </p>
               </caption>
               <thead>
                 <tr className="row table-primary">
                   <th className="col-2" scope="col">
-                    Img
+                    Hình ảnh
                   </th>
                   <th className="col-2" scope="col">
-                    Name
+                    Tên sản phẩm
                   </th>
                   <th className="col-2" scope="col">
-                    Price
+                    Giá
                   </th>
                   <th className="col-2" scope="col">
-                    Quantity
+                    Số lượng
                   </th>
                   <th className="col-2" scope="col">
-                    Total
+                    Tổng
                   </th>
                   <th className="col-2" scope="col">
                     <button
-                      className="btn btn-danger rounded-5"
-                      style={{ width: 70 }}
+                      className="btn btn-danger w-auto rounded-5"
+                      
                       onClick={() => {
                         if (
                           confirm(

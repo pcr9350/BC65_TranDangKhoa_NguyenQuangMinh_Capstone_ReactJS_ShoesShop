@@ -22,7 +22,7 @@ const ButtonBuyProduct = (props) => {
         }
       }}
     >
-      Buy now
+      Mua hàng
     </button>
   );
 };

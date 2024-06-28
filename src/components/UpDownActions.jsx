@@ -3,7 +3,7 @@ import React from "react";
 const UpDownActions = ({ product, handleUpDownBtn }) => {
   return (
     <div
-      className="d-flex flex-row align-items-center gap-3 justify-content-between"
+      className="d-flex flex-row align-items-center justify-content-between"
       style={{ width: '100%' }}
     >
       <button
@@ -15,7 +15,7 @@ const UpDownActions = ({ product, handleUpDownBtn }) => {
       </button>
       <p
         style={{ fontSize: "1rem", fontWeight: "400", width: "20%" }}
-        className="my-auto mx-auto text-center"
+        className="my-auto mx-1 text-center"
       >
         {product?.count}
       </p>

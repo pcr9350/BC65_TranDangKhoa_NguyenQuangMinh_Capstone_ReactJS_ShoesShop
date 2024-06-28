@@ -33,20 +33,20 @@ const Register = () => {
       gender: true,
     },
     validationSchema: yup.object().shape({
-      name: yup.string().required("Name is required"),
+      name: yup.string().required("Tên không được để trống"),
       email: yup
         .string()
-        .email("Invalid email format")
-        .required("Email is required"),
+        .email("Email không hợp lệ")
+        .required("Email không được để trống"),
       password: yup
         .string()
-        .min(6, "Password must be at least 6 characters")
-        .required("Password is required"),
+        .min(6, "Mật khẩu phải có ít nhứt 6 kí tự")
+        .required("Mật khẩu không được để trống"),
       phone: yup
         .string()
-        .matches(/^[0-9]+$/, "Phone number must be digits only")
-        .required("Phone number is required"),
-      gender: yup.boolean().oneOf([true, false], "Gender is required"),
+        .matches(/^[0-9]+$/, "Số điện thoại không đúng định dạng")
+        .required("Số điện thoại không được để trống"),
+      gender: yup.boolean().oneOf([true, false], "Giới tinh không được để trống"),
     }),
     onSubmit: (values) => {
       // Gọi mutation để thực hiện thêm người dùng mới
@@ -59,7 +59,7 @@ const Register = () => {
       <div className="w-50 mx-auto mt-2">
         <p className="p--title text-center">Đăng ký</p>
         <div className="form-group">
-          <label>Name</label>
+          <label>Tên:</label>
           <input
             className="form-control"
             name="name"
@@ -72,7 +72,7 @@ const Register = () => {
           )}
         </div>
         <div className="form-group">
-          <label>Email</label>
+          <label>Email:</label>
           <input
             className="form-control"
             name="email"
@@ -85,7 +85,7 @@ const Register = () => {
           )}
         </div>
         <div className="form-group">
-          <label>Password</label>
+          <label>Mật khẩu:</label>
           <input
             type="password"
             className="form-control"
@@ -99,9 +99,9 @@ const Register = () => {
           )}
         </div>
         <div className="form-group me-2 my-2">
-          <label className="me-2">Gender:</label>
+          <label className="me-2">Giới tính:</label>
 
-          <label htmlFor="male">Male</label>
+          <label htmlFor="male">Nam</label>
           <input
             id="male"
             value={true}
@@ -113,7 +113,7 @@ const Register = () => {
             onBlur={frmRegisterUser.handleBlur}
           />
 
-          <label htmlFor="female">Female</label>
+          <label htmlFor="female">Nữ</label>
           <input
             id="female"
             value={false}
@@ -130,7 +130,7 @@ const Register = () => {
           )}
         </div>
         <div className="form-group">
-          <label>Phone</label>
+          <label>Số điện thoại:</label>
           <input
             className="form-control"
             name="phone"

@@ -9,11 +9,11 @@ const Home = () => {
   return (
     <div className="container">
       <CarouselHome />
-      <p className="p--title">Product list</p>
+      <p className="p--title">Danh sách sản phẩm</p>
       <div className="row">
         {data.map((item, index) => {
           return (
-            <div className="col-lg-3 col-md-4 col-sm-6 mt-2" key={index}>
+            <div className="col-sm-6 col-md-4 col-lg-3 mt-2" key={index}>
               <ProductCard product={item} />
             </div>
           );

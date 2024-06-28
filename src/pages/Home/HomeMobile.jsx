@@ -13,7 +13,7 @@ const HomeMobile = () => {
         return (
           <div className="d-flex mt-2" key={index}>
             <img className="w-25" src={prod.image} alt="..." />
-            <div className="info d-flex flex-column">
+            <div className="info d-flex flex-column w-auto">
               <div>
                 <h3>{prod.name}</h3>
                 <p>{prod.shortDescription}</p>

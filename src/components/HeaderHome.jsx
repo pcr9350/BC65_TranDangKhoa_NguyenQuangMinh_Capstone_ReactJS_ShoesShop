@@ -10,22 +10,13 @@ const HeaderHome = () => {
   const { userLogin } = useSelector((state) => state.userReducer);
   const { products } = useSelector((state) => state.cartReducer);
   let totalquantity = products.reduce((total, item) => total + item.count, 0);
+  
   const renderLogin = () => {
     if (userLogin) {
       return (
         <div className="d-flex flex-row gap-2 align-items-center m-2">
-          <Link
-            to={"/search"}
-            className="d-flex flex-row align-items-center gap-1"
-            style={{
-              marginRight: 2,
-              background: "none",
-              border: 0,
-              textDecoration: "none",
-            }}
-          >
-            <BiSearch size={25} color="white" />
-            <h4 className="text-white">Search</h4>
+          <Link to="/search" className="d-flex flex-row text-white mx-2 text-decoration-none">
+            <BiSearch size={25} className="mx-2"/>
           </Link>
           <NavLink className="text-white mx-2 text-decoration-none" to="/cart">
             <i className="fa fa-shopping-cart position-relative fs-4">
@@ -34,16 +25,13 @@ const HeaderHome = () => {
               </span>
             </i>
           </NavLink>
-          <NavLink
-            className="text-white my-sm-0 text-decoration-none btn btn-outline-info border-0 rounded-pill"
-            to="/profile"
-          >
-            {userLogin.email}{" "}
+
+          <NavLink className="text-white mx-2 text-decoration-none" to="/profile">
+          <i className="fa fa-user-circle fs-3"></i>
           </NavLink>
-          <NavLink
-            className="text-decoration-none text-white btn btn-danger rounded-5"
-            style={{ width: 75 }}
-            to="/"
+
+          <button // Changed to button for better mobile behavior
+            className="text-decoration-none text-white btn btn-danger rounded-5"       
             onClick={() => {
               window.location.replace("/");
               localStorage.removeItem(ACCESS_TOKEN);
@@ -52,34 +40,24 @@ const HeaderHome = () => {
               toast.success("Bạn đã đăng xuất");
             }}
           >
-            Logout
-          </NavLink>
+            Đăng xuất
+          </button>
         </div>
       );
     } else {
       return (
-        <>
-          <Link
-            to={"/search"}
-            className="d-flex flex-row align-items-center gap-1"
-            style={{
-              marginRight: 2,
-              background: "none",
-              border: 0,
-              textDecoration: "none",
-            }}
-          >
-            <BiSearch size={25} color="white" />
-            <h4 className="text-white">Search</h4>
+        <div className="d-flex flex-row gap-2 align-items-center m-2">
+          <Link to="/search" className="text-white mx-2 text-decoration-none">
+            <BiSearch size={25} />
           </Link>
           <NavLink
-            className="text-decoration-none text-white btn btn-primary rounded-5 mx-2"
-            style={{ width: 75 }}
+            className="text-decoration-none text-white btn btn-primary rounded-5"
+            style={{ width: 120 }}
             to="/login"
           >
-            Login
+            Đăng nhập
           </NavLink>
-        </>
+        </div>
       );
     }
   };
@@ -122,21 +100,21 @@ const HeaderHome = () => {
         className={`collapse navbar-collapse ${isMobileMenuOpen ? "show" : ""}`}
         id="collapsibleNavId"
       >
-        <ul className="navbar-nav me-auto mt-2 mt-lg-0 flex-column flex-md-row">
+        <ul className="navbar-nav me-auto mt-2 mt-lg-0 flex-column flex-md-row p-1">
           <li className="nav-item">
             <NavLink className="nav-link" to="/home" aria-current="page">
-              Home
+              Trang chủ
             </NavLink>
           </li>
 
           <li className="nav-item">
             <NavLink className="nav-link" to="/register">
-              Register
+              Đăng kí
             </NavLink>
           </li>
           <li className="nav-item">
             <NavLink className="nav-link" to="/cart">
-              Cart
+              Giỏ hàng
             </NavLink>
           </li>
         </ul>

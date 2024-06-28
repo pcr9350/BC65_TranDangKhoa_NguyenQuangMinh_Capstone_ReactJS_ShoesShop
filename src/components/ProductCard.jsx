@@ -14,7 +14,7 @@ const ProductCard = (props) => {
             to={`/detail/${product.id}`}
             className={"text-decoration-none text-white"}
           >
-            View Detail
+            Chi tiết
           </NavLink>
         </button>
         <ButtonBuyProduct product={product} />

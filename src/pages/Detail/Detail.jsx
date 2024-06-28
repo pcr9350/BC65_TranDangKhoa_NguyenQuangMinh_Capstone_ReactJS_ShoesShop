@@ -52,7 +52,7 @@ const Detail = () => {
 
   return (
     <div className="container">
-      <p className="p--title mt-2">Detail Shoes ID: {id}</p>
+      <p className="p--title mt-2">Chi tiết giày: {productDetail?.name}</p>
       <div className="row">
         <div className="col-4">
           <img src={productDetail?.image} alt="..." className="w-100" />
@@ -68,7 +68,7 @@ const Detail = () => {
             );
           })}
           <div className="mt-2 d-flex flex-column align-items-start gap-2">
-            <div className="w-50">
+            <div className="w-25">
             <UpDownActions
               product={currentProduct}
               handleUpDownBtn={handleUpDownBtn}
@@ -76,23 +76,23 @@ const Detail = () => {
             </div>
             
             <button
-              className={`btn rounded-5 ${
+              className={`btn w-auto rounded-5 ${
                 !currentProduct?.count && "disabled"
               }`}
               style={{ backgroundColor: "#6200EE", color: "white" }}
               onClick={handleAddToCart}
             >
-              Add to cart
+              Thêm giỏ hàng
             </button>
           </div>
         </div>
       </div>
       <div className="mt-1">
-        <p className="p--title">Related Product</p>
+        <p className="p--title">Sản phẩm liên quan</p>
         <div className="row">
           {productDetail?.relatedProducts.map((prod, index) => {
             return (
-              <div className="col-4" key={index}>
+              <div className="col-12 col-sm-6 col-md-4 col-lg-3 mb-2" key={index}>
                 <ProductCard product={prod} />
               </div>
             );

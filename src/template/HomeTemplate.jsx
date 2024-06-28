@@ -36,7 +36,7 @@ const footerDesktop = (
             textDecoration: "none",
           }}
         >
-          Home
+          Trang chủ
         </NavLink>
         <NavLink
           to={"/Search"}
@@ -48,11 +48,11 @@ const footerDesktop = (
             textDecoration: "none",
           }}
         >
-          Search
+          Tìm kiếm
         </NavLink>
       </div>
       <div className="col-3" style={{ textAlign: "left" }}>
-        <h4>SUPPORT</h4>
+        <h4>HỖ TRỢ</h4>
         <NavLink
           to={"/profile"}
           className="text-white mx-2 fs-5 text-decoration-none d-block"
@@ -63,7 +63,7 @@ const footerDesktop = (
             textDecoration: "none",
           }}
         >
-          Profile
+          Hố sơ
         </NavLink>
         <NavLink
           to={"/cart"}
@@ -75,11 +75,11 @@ const footerDesktop = (
             textDecoration: "none",
           }}
         >
-          Cart
+          Giỏ hàng
         </NavLink>
       </div>
       <div className="col-3" style={{ textAlign: "left" }}>
-        <h4>REGISTER</h4>
+        <h4>ĐĂNG KÍ</h4>
         <NavLink
           to={"/register"}
           className="text-white mx-2 fs-5 text-decoration-none d-block"
@@ -90,7 +90,7 @@ const footerDesktop = (
             textDecoration: "none",
           }}
         >
-          Register
+          Đăng kí
         </NavLink>
         <NavLink
           to={"/login"}
@@ -102,19 +102,18 @@ const footerDesktop = (
             textDecoration: "none",
           }}
         >
-          Login
+          Đăng nhập
         </NavLink>
       </div>
       <div className="footer__members col-3" style={{ textAlign: "left" }}>
         <h4
-          className="normal-case text-sm pb-1 pt-2"
-          style={{ paddingBottom: "0.5rem", paddingTop: "0.5rem" }}
+          
         >
-          Triển khai dự án:
+          TRIỂN KHAI DỰ ÁN:
         </h4>
         <ul
-          className="capitalize text-xs"
-          style={{ textTransform: "capitalize", fontSize: "0.75rem" }}
+          className="capitalize"
+          style={{ textTransform: "capitalize"}}
         >
           <li
             className="leading-5 flex items-center tracking-wide"
@@ -170,7 +169,7 @@ const footerDesktop = (
             verticalAlign: "middle",
           }}
         />
-        <span className="align-middle" style={{ verticalAlign: "middle" }}>
+        <span className="align-middle">
           Cybersoft, BC65 Front End: 02/2024 ~ 08/2024
         </span>
       </p>
